@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# My World
 
-Currently, two official plugins are available:
+**Personal portfolio website of Georges Mouratidis — an animated sea of dots where each bubble reveals a project.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?style=flat&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat&logo=vite&logoColor=white)
 
-## React Compiler
+> **Work in progress** — the website is under active development.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the ESLint configuration
+## Table of contents
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [About](#about)
+- [Tech stack](#tech-stack)
+- [Project structure](#project-structure)
+- [Getting started](#getting-started)
+- [Roadmap](#roadmap)
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+## About
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**my-world** is the personal portfolio of Georges Mouratidis, a student in application development
+at HE2B ESI (Brussels). Visitors explore the projects as bubbles floating on an animated sea of dots;
+each bubble leads to a page with a video demo and a link to the source code.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+## Tech stack
+
+| Area         | Technology                     |
+| ------------ | ------------------------------ |
+| Language     | TypeScript                     |
+| UI           | React 19                       |
+| Build tool   | Vite 8                         |
+| Code quality | ESLint, Prettier, EditorConfig |
+| Hosting      | GitHub Pages (planned)         |
+
+## Project structure
+
+```text
+my-world/
+├── public/          # Static files served as-is
+└── src/
+    ├── main.tsx     # Entry point
+    ├── App.tsx      # Root component
+    └── styles/      # Global styles
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+The full architecture (layers and design patterns) will be documented as it is implemented.
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+## Getting started
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+### Prerequisites
+
+- Node.js 24 LTS or later
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/MGpro-grammer/my-world.git
+cd my-world
+npm install
 ```
+
+### Available scripts
+
+| Command                | Description                             |
+| ---------------------- | --------------------------------------- |
+| `npm run dev`          | Start the development server            |
+| `npm run build`        | Type-check and build for production     |
+| `npm run preview`      | Preview the production build locally    |
+| `npm run lint`         | Lint the code with ESLint               |
+| `npm run format`       | Format the code with Prettier           |
+| `npm run format:check` | Check formatting without changing files |
+
+## Roadmap
+
+- [x] Project setup (Vite, React, TypeScript, ESLint, Prettier)
+- [ ] Animated sea of dots
+- [ ] Project bubbles and project pages with video demos
+- [ ] French and English translations
+- [ ] Deployment to GitHub Pages
