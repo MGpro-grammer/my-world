@@ -1,4 +1,52 @@
-/* Global base styles. Design tokens (colors, spacing, typography) are defined in Phase 3. */
+/*
+ * Global styles of the portfolio.
+ *
+ * Design tokens are declared once on :root and reused everywhere with var().
+ * Project accent colors are NOT declared here: they live with the project
+ * data (src/data/projects.ts) so that adding a project never touches the CSS.
+ * Every text color below reaches at least 7:1 contrast on --color-bg (WCAG AAA).
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* Colors */
+  --color-bg: #030812;
+  --color-text: #eef4fb;
+  --color-text-muted: #93a4b8;
+  --color-contact: #e2e8f0;
+
+  /* Typography (Outfit is self-hosted through @fontsource-variable/outfit) */
+  --font-family-base: "Outfit Variable", system-ui, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 2rem;
+  --font-size-display: clamp(2.5rem, 8vw, 5.5rem);
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --line-height-base: 1.5;
+
+  /* Spacing scale (4 px grid) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+
+  /* Radii */
+  --radius-md: 0.75rem;
+  --radius-full: 9999px;
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-medium: 300ms;
+  --duration-slow: 600ms;
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
 *,
 *::before,
 *::after {
@@ -13,7 +61,9 @@ body,
 }
 
 body {
-  background-color: #030812;
-  color: #eef4fb;
-  font-family: system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-base);
 }
