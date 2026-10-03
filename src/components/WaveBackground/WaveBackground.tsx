@@ -3,6 +3,7 @@ import { createWaveRenderer } from "../../core/wave/createWaveRenderer.ts";
 import { AnimationFrameScheduler } from "../../core/wave/FrameScheduler.ts";
 import { WaveScene } from "../../core/wave/WaveScene.ts";
 import { WaveSimulation } from "../../core/wave/WaveSimulation.ts";
+import { useDevicePixelRatio } from "../../hooks/useDevicePixelRatio.ts";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion.ts";
 import styles from "./WaveBackground.module.css";
 
@@ -18,17 +19,21 @@ const BRUSH_RADIUS = 2;
 /** Height added under the pointer at each move. */
 const POINTER_STRENGTH = 4;
 
+/** Height added under a click or a tap: a single, stronger splash. */
+const TAP_STRENGTH = 12;
+
 /**
  * Animated sea of dots drawn behind the whole page.
  *
  * The component only talks to {@link WaveScene}: it creates the scene when
- * mounted, forwards size changes and pointer moves to it, and disposes of it
- * when unmounted. When the visitor prefers reduced motion, the dots are drawn
- * once at rest and the pointer is ignored.
+ * mounted, forwards size changes, pointer moves and taps to it, and disposes
+ * of it when unmounted. When the visitor prefers reduced motion, the dots are
+ * drawn once at rest and the pointer is ignored.
  */
 export function WaveBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
+  const pixelRatio = useDevicePixelRatio();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -47,7 +52,7 @@ export function WaveBackground() {
     });
 
     const fitToCanvas = () => {
-      scene.resize(canvas.clientWidth, canvas.clientHeight, window.devicePixelRatio);
+      scene.resize(canvas.clientWidth, canvas.clientHeight, pixelRatio);
     };
     fitToCanvas();
     const resizeObserver = new ResizeObserver(fitToCanvas);
@@ -64,15 +69,20 @@ export function WaveBackground() {
     const handlePointerMove = (event: PointerEvent) => {
       scene.disturb(event.clientX, event.clientY, POINTER_STRENGTH);
     };
+    const handlePointerDown = (event: PointerEvent) => {
+      scene.disturb(event.clientX, event.clientY, TAP_STRENGTH);
+    };
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointerdown", handlePointerDown, { passive: true });
     scene.start();
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerdown", handlePointerDown);
       resizeObserver.disconnect();
       scene.dispose();
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, pixelRatio]);
 
   return <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />;
 }

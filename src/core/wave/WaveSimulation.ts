@@ -26,6 +26,8 @@ export class WaveSimulation implements WaveField {
   private rowCount = 0;
   private current = new Float32Array(0);
   private previous = new Float32Array(0);
+  private currentPeak = 0;
+  private previousPeak = 0;
 
   /**
    * @param options - Grid spacing, damping and brush size.
@@ -62,6 +64,14 @@ export class WaveSimulation implements WaveField {
   }
 
   /**
+   * Largest absolute height over the last two steps; 0 when the surface is flat.
+   * Both steps count because a wave can cross 0 in one step and rise again in the next.
+   */
+  get peakHeight(): number {
+    return Math.max(this.currentPeak, this.previousPeak);
+  }
+
+  /**
    * Adapts the grid to a new area. The grid covers the whole area, edges
    * included. Waves in progress are cleared only when the grid size changes.
    * @param width - Width of the area, in CSS pixels.
@@ -77,6 +87,8 @@ export class WaveSimulation implements WaveField {
     this.rowCount = rows;
     this.current = new Float32Array(columns * rows);
     this.previous = new Float32Array(columns * rows);
+    this.currentPeak = 0;
+    this.previousPeak = 0;
   }
 
   /**
@@ -118,6 +130,7 @@ export class WaveSimulation implements WaveField {
     const rows = this.rowCount;
     const current = this.current;
     const next = this.previous;
+    let peak = 0;
 
     for (let row = 1; row < rows - 1; row++) {
       const rowStart = row * columns;
@@ -128,11 +141,15 @@ export class WaveSimulation implements WaveField {
           current[index + 1] +
           current[index - columns] +
           current[index + columns];
-        next[index] = (neighbors / 2 - next[index]) * this.damping;
+        const height = (neighbors / 2 - next[index]) * this.damping;
+        next[index] = height;
+        peak = Math.max(peak, Math.abs(height));
       }
     }
 
     this.previous = current;
     this.current = next;
+    this.previousPeak = this.currentPeak;
+    this.currentPeak = peak;
   }
 }
