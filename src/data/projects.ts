@@ -125,3 +125,12 @@ export const PROJECTS: readonly Project[] = [
     repositoryUrl: `${GITHUB_BASE_URL}/wordeul`,
   },
 ];
+
+/**
+ * Finds a project from an identifier read in the URL.
+ * @param id - Identifier to look for; may be anything typed in the address bar.
+ * @returns The matching project, or `undefined` if no project has this identifier.
+ */
+export function findProject(id: string | undefined): Project | undefined {
+  return PROJECTS.find((project) => project.id === id);
+}

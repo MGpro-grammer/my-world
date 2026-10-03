@@ -1,17 +1,16 @@
+import { Outlet } from "react-router";
 import { WaveBackground } from "./components/WaveBackground/WaveBackground.tsx";
 
 /**
- * Root component of the portfolio.
- * Temporary placeholder until the features are implemented (Phases 4 and 5).
+ * Layout shared by every page: the wave background, with the current page
+ * drawn on top of it. The background is never unmounted when the page
+ * changes, so the waves keep running.
  */
 function App() {
   return (
     <>
       <WaveBackground />
-      <main>
-        <h1>Georges Mouratidis</h1>
-        <p>Portfolio under construction.</p>
-      </main>
+      <Outlet />
     </>
   );
 }

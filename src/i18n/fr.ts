@@ -2,6 +2,20 @@ import type { Translations } from "./Translations.ts";
 
 /** French texts of the site (default language). */
 export const fr = {
+  home: {
+    tagline: "Développeur d'applications web et mobile",
+    projectsLabel: "Projets",
+  },
+  projectPage: {
+    back: "Retour aux projets",
+    roleHeading: "Mon rôle",
+    viewOnGitHub: "Voir le projet sur GitHub",
+  },
+  notFound: {
+    title: "Page introuvable",
+    message: "Cette adresse ne correspond à aucune page du site.",
+    backHome: "Retour à l'accueil",
+  },
   projects: {
     "hospital-security": {
       summary: "Dossiers médicaux chiffrés de bout en bout",

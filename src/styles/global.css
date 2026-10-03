@@ -67,3 +67,7 @@ body {
   font-size: var(--font-size-md);
   line-height: var(--line-height-base);
 }
+
+a {
+  color: inherit;
+}
