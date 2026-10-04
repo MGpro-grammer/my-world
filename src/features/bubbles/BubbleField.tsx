@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import { placeBubbles, type Rect } from "../../core/layout/placeBubbles.ts";
 import { PROJECTS } from "../../data/projects.ts";
 import { useElementSize } from "../../hooks/useElementSize.ts";
 import { useTranslations } from "../../i18n/useTranslations.ts";
+import { bubbleReducer, INITIAL_BUBBLE_STATE, isExpanded } from "./bubbleState.ts";
 import { ProjectBubble } from "./ProjectBubble.tsx";
 import styles from "./BubbleField.module.css";
 
@@ -23,13 +24,26 @@ const FREE_CENTER_RATIO = 0.36;
 
 /**
  * Area that holds one bubble per project, spread without overlap and placed
- * again whenever the area changes size. It is a navigation list for
- * assistive technologies.
+ * again whenever the area changes size. It owns the state machine that
+ * decides which bubble is open, and is a navigation list for assistive
+ * technologies.
  */
 export function BubbleField() {
   const fieldRef = useRef<HTMLElement>(null);
   const { width, height } = useElementSize(fieldRef);
   const texts = useTranslations();
+  const [state, dispatch] = useReducer(bubbleReducer, INITIAL_BUBBLE_STATE);
+
+  // A tap anywhere outside the bubbles closes the open one.
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!(event.target instanceof Element) || event.target.closest("[data-bubble]") === null) {
+        dispatch({ type: "collapseAll" });
+      }
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, []);
 
   const placements = placeBubbles({
     width,
@@ -51,6 +65,10 @@ export function BubbleField() {
                 project={project}
                 summary={texts.projects[project.id].summary}
                 placement={placements[index]}
+                expanded={isExpanded(state, project.id)}
+                onExpand={() => dispatch({ type: "expand", projectId: project.id })}
+                onCollapse={() => dispatch({ type: "collapse", projectId: project.id })}
+                onNavigate={() => dispatch({ type: "navigate", projectId: project.id })}
               />
             </li>
           ))}

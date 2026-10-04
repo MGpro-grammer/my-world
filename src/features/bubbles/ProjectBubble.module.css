@@ -7,6 +7,9 @@
   --size: 64px;
   --panel-width: 300px;
   --gutter: var(--space-4);
+  /* Defaults only: each bubble replaces them through its inline style. */
+  --accent: var(--color-text);
+  --x: 0px;
 
   position: absolute;
   width: var(--size);
@@ -17,8 +20,7 @@
   text-decoration: none;
 }
 
-.bubble:hover,
-.bubble:focus-visible {
+.bubble[data-expanded="true"] {
   z-index: 2;
 }
 
@@ -41,7 +43,10 @@
   color: var(--accent);
 }
 
-/* Hidden with opacity only, so screen readers still read the name and summary. */
+/*
+ * Opened only through data-expanded, set by the state machine of the field.
+ * Hidden with opacity only, so screen readers still read the name and summary.
+ */
 .panel {
   position: absolute;
   display: flex;
@@ -62,8 +67,7 @@
     transform var(--duration-fast) var(--easing-standard);
 }
 
-.bubble:hover .panel,
-.bubble:focus-visible .panel {
+.bubble[data-expanded="true"] .panel {
   opacity: 1;
   transform: none;
   pointer-events: auto;
