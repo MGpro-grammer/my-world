@@ -1,0 +1,67 @@
+/* Responsive grid of project cards; the bottom padding leaves room for the list button. */
+.container {
+  padding: var(--space-6) var(--space-6) calc(var(--space-12) * 2);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-4);
+  max-width: 960px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  /* Default only: replaced by the inline style of each card. */
+  --accent: var(--color-text);
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-bg) 90%, transparent);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: border-color var(--duration-fast) var(--easing-standard);
+}
+
+.item:hover {
+  border-color: var(--accent);
+}
+
+.item:focus-visible {
+  outline-color: var(--accent);
+}
+
+.icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-full);
+  color: var(--accent);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--accent);
+}
+
+.summary {
+  font-size: var(--font-size-sm);
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}

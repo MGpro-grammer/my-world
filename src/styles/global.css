@@ -72,6 +72,12 @@ a {
   color: inherit;
 }
 
+/* Visible keyboard focus everywhere; components may recolor it. */
+:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 3px;
+}
+
 /* Hidden on screen but read by screen readers. */
 .visually-hidden {
   position: absolute;

@@ -2,7 +2,7 @@
 .page {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
 }
 
 .header {
@@ -19,4 +19,32 @@
 .tagline {
   margin: var(--space-1) 0 0;
   color: var(--color-text-muted);
+}
+
+/* Always reachable in the bottom-left corner; the bubbles keep away from it. */
+.viewToggle {
+  position: fixed;
+  bottom: var(--space-6);
+  left: var(--space-6);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-text-muted);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.viewToggle:hover {
+  border-color: var(--color-text);
+}
+
+.viewToggle[aria-pressed="true"] {
+  border-color: var(--color-text);
+  background: var(--color-text);
+  color: var(--color-bg);
 }

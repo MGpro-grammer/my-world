@@ -9,6 +9,7 @@ export const fr = {
   home: {
     tagline: "Développeur d'applications web et mobile",
     projectsLabel: "Projets",
+    listView: "Liste",
   },
   projectPage: {
     back: "Retour aux projets",

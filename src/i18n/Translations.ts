@@ -1,4 +1,5 @@
 import type { ProjectId, ProjectKind } from "../data/projects.ts";
+
 /** Texts of one project in one language. */
 export interface ProjectTexts {
   /** One-line description shown in the expanded bubble. */
@@ -29,6 +30,8 @@ export interface Translations {
     readonly tagline: string;
     /** Accessible name of the list of projects. */
     readonly projectsLabel: string;
+    /** Button that switches between the bubbles and the plain list. */
+    readonly listView: string;
   };
   /** Page of one project. */
   readonly projectPage: {

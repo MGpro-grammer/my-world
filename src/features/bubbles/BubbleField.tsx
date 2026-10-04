@@ -22,6 +22,9 @@ const WIDE_SCREEN_MIN_WIDTH = 768;
 /** Share of the width and height of the free middle area on wide screens. */
 const FREE_CENTER_RATIO = 0.36;
 
+/** Corner kept free for the list button of the home page, in CSS pixels. */
+const TOGGLE_AREA = { width: 180, height: 88 };
+
 /**
  * Area that holds one bubble per project, spread without overlap and placed
  * again whenever the area changes size. It owns the state machine that
@@ -82,15 +85,23 @@ export function BubbleField() {
  * Areas of the field kept free of bubbles.
  * @param width - Width of the field, in CSS pixels.
  * @param height - Height of the field, in CSS pixels.
- * @returns The middle of the field on wide screens; nothing on small ones.
+ * @returns The bottom-left corner of the list button, plus the middle of the
+ * field on wide screens.
  */
 function freeAreas(width: number, height: number): Rect[] {
+  const toggleCorner: Rect = {
+    left: 0,
+    top: height - TOGGLE_AREA.height,
+    right: TOGGLE_AREA.width,
+    bottom: height,
+  };
   if (width < WIDE_SCREEN_MIN_WIDTH) {
-    return [];
+    return [toggleCorner];
   }
   const freeWidth = width * FREE_CENTER_RATIO;
   const freeHeight = height * FREE_CENTER_RATIO;
   return [
+    toggleCorner,
     {
       left: (width - freeWidth) / 2,
       top: (height - freeHeight) / 2,
