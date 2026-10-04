@@ -15,6 +15,13 @@ export interface ProjectTexts {
  * text is a compile error, not a blank space found later on the site.
  */
 export interface Translations {
+  /** Welcome screen shown once per visit. */
+  readonly intro: {
+    /** Line shown above the author's name. */
+    readonly welcome: string;
+    /** How to skip the welcome screen. */
+    readonly skipHint: string;
+  };
   /** Home page. */
   readonly home: {
     /** Line shown under the author's name. */

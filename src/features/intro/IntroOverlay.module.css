@@ -1,0 +1,77 @@
+/* Opaque layer over the whole page; it fades out to reveal the dots and the bubbles. */
+.overlay {
+  /* Defaults only: replaced by the inline style, which comes from introState.ts. */
+  --appear-duration: 1400ms;
+  --fade-duration: 1600ms;
+
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  background: var(--color-bg);
+  text-align: center;
+  cursor: pointer;
+  transition: opacity var(--fade-duration) var(--easing-standard);
+}
+
+.overlay[data-status="revealing"] {
+  opacity: 0;
+}
+
+.welcome {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  animation: rise var(--appear-duration) var(--easing-standard) both;
+}
+
+.name {
+  margin: 0;
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.1;
+  animation: rise var(--appear-duration) var(--easing-standard) calc(var(--appear-duration) / 4)
+    both;
+}
+
+.hint {
+  position: absolute;
+  bottom: var(--space-8);
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  animation: appear var(--appear-duration) var(--easing-standard) var(--appear-duration) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reduced motion: a simple fade, without the upward movement. */
+@media (prefers-reduced-motion: reduce) {
+  .welcome,
+  .name {
+    animation-name: appear;
+  }
+}

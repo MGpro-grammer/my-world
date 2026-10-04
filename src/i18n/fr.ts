@@ -2,6 +2,10 @@ import type { Translations } from "./Translations.ts";
 
 /** French texts of the site (default language). */
 export const fr = {
+  intro: {
+    welcome: "Bienvenue dans l'univers de",
+    skipHint: "Cliquez ou appuyez sur une touche pour entrer",
+  },
   home: {
     tagline: "Développeur d'applications web et mobile",
     projectsLabel: "Projets",
