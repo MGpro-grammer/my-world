@@ -108,8 +108,8 @@
   font-size: var(--font-size-sm);
 }
 
-/* 16:9 frame, ready to receive the video in Phase 6. */
-.video {
+/* 16:9 frame shown instead of the video when the project has none. */
+.noVideo {
   display: flex;
   flex-direction: column;
   align-items: center;

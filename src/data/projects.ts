@@ -43,10 +43,37 @@ export interface Project {
   readonly technologies: readonly string[];
   /** Public GitHub repository. */
   readonly repositoryUrl: string;
+  /** Recorded demonstration, if the project has one. */
+  readonly video?: VideoClip;
+}
+
+/** Recorded demonstration of a project, served from `public/videos/`. */
+export interface VideoClip {
+  /** Address of the MP4 (H.264) file. */
+  readonly source: string;
+  /** Address of the still image shown until the video plays. */
+  readonly poster: string;
+  /** Width of the video, in pixels. With the height, it reserves the player's space before loading. */
+  readonly width: number;
+  /** Height of the video, in pixels. */
+  readonly height: number;
 }
 
 /** Base address of the author's GitHub repositories. */
 const GITHUB_BASE_URL = "https://github.com/MGpro-grammer";
+
+/**
+ * Describes the video of a project. Its files are named after the project:
+ * `public/videos/<id>.mp4` and `public/videos/<id>.webp`.
+ * @param id - Identifier of the project.
+ * @param width - Width of the video, in pixels.
+ * @param height - Height of the video, in pixels.
+ * @returns Addresses and size of the video.
+ */
+function videoOf(id: ProjectId, width: number, height: number): VideoClip {
+  const path = `${import.meta.env.BASE_URL}videos/${id}`;
+  return { source: `${path}.mp4`, poster: `${path}.webp`, width, height };
+}
 
 /**
  * Every project shown on the site, in display order.
@@ -63,6 +90,7 @@ export const PROJECTS: readonly Project[] = [
     accentColor: "#fb7185",
     technologies: ["Python", "Django", "Vue", "Keycloak", "Docker"],
     repositoryUrl: `${GITHUB_BASE_URL}/hospital-security`,
+    video: videoOf("hospital-security", 1280, 580),
   },
   {
     id: "metre-moi-au-regime",
@@ -73,6 +101,7 @@ export const PROJECTS: readonly Project[] = [
     accentColor: "#4ade80",
     technologies: ["Java 21", "JavaFX", "SQLite"],
     repositoryUrl: `${GITHUB_BASE_URL}/metre-moi-au-regime`,
+    video: videoOf("metre-moi-au-regime", 1280, 720),
   },
   {
     id: "convertisor",
@@ -83,6 +112,7 @@ export const PROJECTS: readonly Project[] = [
     accentColor: "#fb923c",
     technologies: ["Python", "CustomTkinter", "yt-dlp", "FFmpeg"],
     repositoryUrl: `${GITHUB_BASE_URL}/convertisor`,
+    video: videoOf("convertisor", 596, 720),
   },
   {
     id: "repartitor",
@@ -93,6 +123,7 @@ export const PROJECTS: readonly Project[] = [
     accentColor: "#a78bfa",
     technologies: ["Vue", "Pinia", "Supabase", "Google OAuth"],
     repositoryUrl: `${GITHUB_BASE_URL}/repartitor`,
+    video: videoOf("repartitor", 1280, 572),
   },
   {
     id: "module-odoo-interview",
@@ -103,6 +134,7 @@ export const PROJECTS: readonly Project[] = [
     accentColor: "#f472b6",
     technologies: ["Python", "Django", "Odoo", "Docker"],
     repositoryUrl: `${GITHUB_BASE_URL}/module-odoo-interview`,
+    video: videoOf("module-odoo-interview", 1280, 580),
   },
   {
     id: "synthesizer",
@@ -113,6 +145,7 @@ export const PROJECTS: readonly Project[] = [
     accentColor: "#2dd4bf",
     technologies: ["C++23", "CMake"],
     repositoryUrl: `${GITHUB_BASE_URL}/synthesizer`,
+    video: videoOf("synthesizer", 890, 596),
   },
   {
     id: "wordeul",
@@ -123,6 +156,7 @@ export const PROJECTS: readonly Project[] = [
     accentColor: "#facc15",
     technologies: ["JavaScript", "HTML", "CSS"],
     repositoryUrl: `${GITHUB_BASE_URL}/wordeul`,
+    video: videoOf("wordeul", 1280, 566),
   },
 ];
 

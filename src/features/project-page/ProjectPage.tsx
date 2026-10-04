@@ -6,6 +6,7 @@ import { findProject } from "../../data/projects.ts";
 import { useTranslations } from "../../i18n/useTranslations.ts";
 import { NotFoundPage } from "../not-found/NotFoundPage.tsx";
 import styles from "./ProjectPage.module.css";
+import { ProjectVideo } from "./ProjectVideo.tsx";
 
 /**
  * Page of one project, found from the `projectId` part of the address:
@@ -65,11 +66,14 @@ export function ProjectPage() {
 
         <section className={styles.section}>
           <h2 className={styles.heading}>{pageTexts.videoHeading}</h2>
-          {/* Placeholder until the videos arrive in Phase 6. */}
-          <div className={styles.video}>
-            <VideoOff size={32} aria-hidden="true" />
-            <p className={styles.text}>{pageTexts.noVideo}</p>
-          </div>
+          {project.video === undefined ? (
+            <div className={styles.noVideo}>
+              <VideoOff size={32} aria-hidden="true" />
+              <p className={styles.text}>{pageTexts.noVideo}</p>
+            </div>
+          ) : (
+            <ProjectVideo clip={project.video} description={projectTexts.videoDescription} />
+          )}
         </section>
 
         <a

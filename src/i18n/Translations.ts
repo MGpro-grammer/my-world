@@ -8,6 +8,11 @@ export interface ProjectTexts {
   readonly description: string;
   /** What the author did in the project. */
   readonly role: string;
+  /**
+   * What the video shows, for visitors who cannot watch it.
+   * Not shown when the project has no video.
+   */
+  readonly videoDescription: string;
 }
 
 /**

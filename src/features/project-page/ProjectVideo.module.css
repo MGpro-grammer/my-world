@@ -1,0 +1,31 @@
+/*
+ * Demonstration video of a project page. Its space is reserved from its
+ * proportions (--ratio, set by the component) before anything is loaded.
+ */
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.video {
+  /* Default only: replaced by the inline style of the video (width / height). */
+  --ratio: 1.7778;
+
+  display: block;
+  /* Never wider than the card, never taller than 70% of the screen (portrait videos). */
+  width: min(100%, calc(70vh * var(--ratio)));
+  height: auto;
+  aspect-ratio: var(--ratio);
+  margin-inline: auto;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.caption {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
