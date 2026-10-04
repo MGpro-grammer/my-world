@@ -1,9 +1,10 @@
-import type { ProjectId } from "../data/projects.ts";
-
+import type { ProjectId, ProjectKind } from "../data/projects.ts";
 /** Texts of one project in one language. */
 export interface ProjectTexts {
   /** One-line description shown in the expanded bubble. */
   readonly summary: string;
+  /** Longer description shown on the project page, based on the repository description. */
+  readonly description: string;
   /** What the author did in the project. */
   readonly role: string;
 }
@@ -33,10 +34,20 @@ export interface Translations {
   readonly projectPage: {
     /** Link back to the home page. */
     readonly back: string;
+    /** Label of each kind of project. */
+    readonly kind: Readonly<Record<ProjectKind, string>>;
     /** Heading of the author's role. */
     readonly roleHeading: string;
+    /** Heading of the list of technologies. */
+    readonly technologiesHeading: string;
+    /** Heading of the video. */
+    readonly videoHeading: string;
+    /** Shown instead of the video when the project has none. */
+    readonly noVideo: string;
     /** Link to the GitHub repository. */
     readonly viewOnGitHub: string;
+    /** Read only by screen readers after a link that opens a new tab. */
+    readonly opensInNewTab: string;
   };
   /** Page shown for an unknown address. */
   readonly notFound: {
