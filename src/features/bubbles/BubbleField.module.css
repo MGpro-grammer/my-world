@@ -1,0 +1,12 @@
+/* The field fills the space left by the page header; bubbles are placed inside it. */
+.field {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

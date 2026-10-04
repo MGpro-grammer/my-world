@@ -1,0 +1,22 @@
+/* Full-height column: header at the top, bubble field in the remaining space. */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  padding: var(--space-6) var(--space-6) 0;
+}
+
+.name {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+}
+
+.tagline {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+}
