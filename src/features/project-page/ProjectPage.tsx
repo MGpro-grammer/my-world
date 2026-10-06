@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { Link, useParams } from "react-router";
 import { AUTHOR_NAME } from "../../data/author.ts";
 import { findProject } from "../../data/projects.ts";
+import { useLocalizedPath } from "../../i18n/useLanguage.ts";
 import { useTranslations } from "../../i18n/useTranslations.ts";
 import { NotFoundPage } from "../not-found/NotFoundPage.tsx";
 import styles from "./ProjectPage.module.css";
@@ -16,6 +17,7 @@ import { ProjectVideo } from "./ProjectVideo.tsx";
 export function ProjectPage() {
   const { projectId } = useParams();
   const texts = useTranslations();
+  const localize = useLocalizedPath();
   const project = findProject(projectId);
 
   if (project === undefined) {
@@ -31,7 +33,7 @@ export function ProjectPage() {
     <main className={styles.page} style={style}>
       <title>{`${project.name} — ${AUTHOR_NAME}`}</title>
       <article className={styles.card}>
-        <Link to="/" className={styles.back}>
+        <Link to={localize("/")} className={styles.back}>
           <ArrowLeft size={18} aria-hidden="true" />
           {pageTexts.back}
         </Link>

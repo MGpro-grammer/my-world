@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router";
 import { PROJECTS } from "../../data/projects.ts";
+import { useLocalizedPath } from "../../i18n/useLanguage.ts";
 import { useTranslations } from "../../i18n/useTranslations.ts";
 import styles from "./ProjectList.module.css";
 
@@ -10,6 +11,7 @@ import styles from "./ProjectList.module.css";
  */
 export function ProjectList() {
   const texts = useTranslations();
+  const localize = useLocalizedPath();
 
   return (
     <nav aria-label={texts.home.projectsLabel} className={styles.container}>
@@ -20,7 +22,7 @@ export function ProjectList() {
           const style = { "--accent": project.accentColor } as CSSProperties;
           return (
             <li key={project.id}>
-              <Link to={`/projects/${project.id}`} className={styles.item} style={style}>
+              <Link to={localize(`/projects/${project.id}`)} className={styles.item} style={style}>
                 <span className={styles.icon}>
                   <Icon size={24} aria-hidden="true" />
                 </span>

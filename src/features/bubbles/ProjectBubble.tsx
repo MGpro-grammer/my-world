@@ -2,6 +2,7 @@ import { useRef, type CSSProperties, type MouseEvent, type PointerEvent } from "
 import { Link } from "react-router";
 import type { BubblePlacement } from "../../core/layout/placeBubbles.ts";
 import type { Project } from "../../data/projects.ts";
+import { useLocalizedPath } from "../../i18n/useLanguage.ts";
 import styles from "./ProjectBubble.module.css";
 
 /** Data and callbacks of one bubble; it knows nothing about the field's state machine. */
@@ -40,6 +41,7 @@ export function ProjectBubble({
   // Read at pointer down, before focus or click change anything.
   const lastPointerType = useRef("");
   const expandedAtPointerDown = useRef(false);
+  const localize = useLocalizedPath();
   const Icon = project.icon;
   // Custom properties are not part of React's CSSProperties type, hence the cast.
   const style = {
@@ -68,7 +70,7 @@ export function ProjectBubble({
 
   return (
     <Link
-      to={`/projects/${project.id}`}
+      to={localize(`/projects/${project.id}`)}
       className={styles.bubble}
       style={style}
       data-bubble=""
