@@ -1,3 +1,4 @@
+import type { ContactChannelId } from "../data/contact.ts";
 import type { ProjectId, ProjectKind } from "../data/projects.ts";
 
 /** Texts of one project in one language. */
@@ -22,6 +23,13 @@ export interface ProjectTexts {
  * text is a compile error, not a blank space found later on the site.
  */
 export interface Translations {
+  /** Texts used on several pages. */
+  readonly common: {
+    /** Read only by screen readers after a link that opens a new tab. */
+    readonly opensInNewTab: string;
+    /** Button that closes a dialog. */
+    readonly close: string;
+  };
   /** Welcome screen shown once per visit. */
   readonly intro: {
     /** Line shown above the author's name. */
@@ -39,6 +47,8 @@ export interface Translations {
     readonly projectsLabel: string;
     /** Button that switches between the bubbles and the plain list. */
     readonly listView: string;
+    /** One-line description of the contact bubble, under its name. */
+    readonly contactSummary: string;
   };
   /** Page of one project. */
   readonly projectPage: {
@@ -56,8 +66,44 @@ export interface Translations {
     readonly noVideo: string;
     /** Link to the GitHub repository. */
     readonly viewOnGitHub: string;
-    /** Read only by screen readers after a link that opens a new tab. */
-    readonly opensInNewTab: string;
+  };
+  /** Contact page and its dialogs. */
+  readonly contact: {
+    /** Name of the contact bubble and title of the contact page. */
+    readonly title: string;
+    /** Line shown under the title of the contact page. */
+    readonly intro: string;
+    /** Link back to the home page. */
+    readonly back: string;
+    /** Name of each way to reach the author, shown on its bubble. */
+    readonly channels: Readonly<Record<ContactChannelId, string>>;
+    /** Button that copies the address or the number. */
+    readonly copy: string;
+    /** Shown for a moment once the copy is done. */
+    readonly copied: string;
+    /** E-mail dialog. */
+    readonly email: {
+      /** When the author answers. */
+      readonly message: string;
+      /** Button that opens the visitor's e-mail application. */
+      readonly write: string;
+    };
+    /** Phone dialog. */
+    readonly phone: {
+      /** Heading of the hours at which to call. */
+      readonly availabilityHeading: string;
+      /** Time zone of the hours. */
+      readonly timeZone: string;
+      /** Button that starts a call. */
+      readonly call: string;
+    };
+    /** Résumé dialog. */
+    readonly cv: {
+      /** Text alternative of the résumé picture. */
+      readonly imageDescription: string;
+      /** Link to the PDF file; the text names its type, so the download is no surprise. */
+      readonly download: string;
+    };
   };
   /** Language switch shown on every page. */
   readonly languageSwitch: {

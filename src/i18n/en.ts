@@ -2,6 +2,10 @@ import type { Translations } from "./Translations.ts";
 
 /** English texts of the site. */
 export const en = {
+  common: {
+    opensInNewTab: "(opens in a new tab)",
+    close: "Close",
+  },
   intro: {
     welcome: "Welcome to the world of",
     skipHint: "Click or press any key to enter",
@@ -11,6 +15,7 @@ export const en = {
     tagline: "Web and mobile application developer",
     projectsLabel: "Projects",
     listView: "List",
+    contactSummary: "LinkedIn, GitHub, email, phone and résumé",
   },
   projectPage: {
     back: "Back to projects",
@@ -23,7 +28,35 @@ export const en = {
     videoHeading: "Video",
     noVideo: "No video for this project yet.",
     viewOnGitHub: "View the project on GitHub",
-    opensInNewTab: "(opens in a new tab)",
+  },
+  contact: {
+    title: "Contact",
+    intro: "Choose how to reach me.",
+    back: "Back to home",
+    channels: {
+      linkedin: "LinkedIn",
+      github: "GitHub",
+      email: "Email",
+      phone: "Phone",
+      cv: "Résumé",
+    },
+    copy: "Copy",
+    copied: "Copied",
+    email: {
+      message:
+        "I check my emails regularly and reply within 5 days. No need to send your message again before then: it has been received.",
+      write: "Write an email",
+    },
+    phone: {
+      availabilityHeading: "Availability",
+      timeZone: "Belgian time (CET/CEST)",
+      call: "Call",
+    },
+    cv: {
+      imageDescription:
+        "Résumé of Georges Mouratidis, web and mobile application developer (in French).",
+      download: "Download the résumé (PDF, in French)",
+    },
   },
   languageSwitch: {
     label: "Site language",

@@ -86,7 +86,7 @@ export function ProjectPage() {
         >
           {pageTexts.viewOnGitHub}
           <ExternalLink size={18} aria-hidden="true" />
-          <span className="visually-hidden">{pageTexts.opensInNewTab}</span>
+          <span className="visually-hidden">{texts.common.opensInNewTab}</span>
         </a>
       </article>
     </main>

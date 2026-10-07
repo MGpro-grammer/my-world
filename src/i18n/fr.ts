@@ -2,6 +2,10 @@ import type { Translations } from "./Translations.ts";
 
 /** French texts of the site (default language). */
 export const fr = {
+  common: {
+    opensInNewTab: "(s'ouvre dans un nouvel onglet)",
+    close: "Fermer",
+  },
   intro: {
     welcome: "Bienvenue dans l'univers de",
     skipHint: "Cliquez ou appuyez sur une touche pour entrer",
@@ -11,6 +15,7 @@ export const fr = {
     tagline: "Développeur d'applications web et mobile",
     projectsLabel: "Projets",
     listView: "Liste",
+    contactSummary: "LinkedIn, GitHub, e-mail, téléphone et CV",
   },
   projectPage: {
     back: "Retour aux projets",
@@ -23,7 +28,34 @@ export const fr = {
     videoHeading: "Vidéo",
     noVideo: "Pas encore de vidéo pour ce projet.",
     viewOnGitHub: "Voir le projet sur GitHub",
-    opensInNewTab: "(s'ouvre dans un nouvel onglet)",
+  },
+  contact: {
+    title: "Contact",
+    intro: "Choisissez comment me joindre.",
+    back: "Retour à l'accueil",
+    channels: {
+      linkedin: "LinkedIn",
+      github: "GitHub",
+      email: "E-mail",
+      phone: "Téléphone",
+      cv: "CV",
+    },
+    copy: "Copier",
+    copied: "Copié",
+    email: {
+      message:
+        "Je consulte mes e-mails régulièrement et je réponds dans un délai de 5 jours. Inutile de renvoyer votre message avant ce délai : il a bien été reçu.",
+      write: "Écrire un e-mail",
+    },
+    phone: {
+      availabilityHeading: "Disponibilités",
+      timeZone: "Heure de Belgique",
+      call: "Appeler",
+    },
+    cv: {
+      imageDescription: "CV de Georges Mouratidis, développeur d'applications web et mobile.",
+      download: "Télécharger le CV (PDF)",
+    },
   },
   languageSwitch: {
     label: "Langue du site",
