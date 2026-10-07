@@ -57,6 +57,11 @@ export interface Translations {
     /** Read only by screen readers after a link that opens a new tab. */
     readonly opensInNewTab: string;
   };
+  /** Language switch shown on every page. */
+  readonly languageSwitch: {
+    /** Accessible name of the switch. */
+    readonly label: string;
+  };
   /** Page shown for an unknown address. */
   readonly notFound: {
     readonly title: string;

@@ -22,6 +22,15 @@ export type Language = (typeof LANGUAGES)[number];
 export const TRANSLATIONS: Readonly<Record<Language, Translations>> = { fr, en };
 
 /**
+ * Name of each language, written in that language, so that every visitor
+ * recognizes their own whatever the language of the page.
+ */
+export const LANGUAGE_NAMES: Readonly<Record<Language, string>> = {
+  fr: "Français",
+  en: "English",
+};
+
+/**
  * Tells whether a piece of text is one of the site's language codes.
  * @param value - Text to check, e.g. the first part of an address.
  * @returns `true`, with `value` narrowed to {@link Language}, if it is one.

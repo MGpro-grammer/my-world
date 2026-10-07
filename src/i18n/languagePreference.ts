@@ -43,6 +43,19 @@ export function preferredLanguage(): Language {
 }
 
 /**
+ * Remembers the language the visitor chose, for their next visit to the bare
+ * address. Does nothing if the browser blocks storage.
+ * @param language - Language chosen.
+ */
+export function saveLanguage(language: Language): void {
+  try {
+    localStorage.setItem(STORAGE_KEY, language);
+  } catch {
+    // Storage blocked: the choice is simply not remembered.
+  }
+}
+
+/**
  * Reads the last language choice, if the browser allows storage.
  * @returns The saved value, or `null` if none or if storage is blocked.
  */

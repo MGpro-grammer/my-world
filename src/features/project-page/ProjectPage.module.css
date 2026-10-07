@@ -145,6 +145,13 @@
   outline-offset: 4px;
 }
 
+/* Below this width the card reaches the language menu: start it lower. */
+@media (width < 1024px) {
+  .page {
+    padding-top: calc(var(--space-12) + var(--space-8));
+  }
+}
+
 @media (width < 600px) {
   .card {
     padding: var(--space-4);

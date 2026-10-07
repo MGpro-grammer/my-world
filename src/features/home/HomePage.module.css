@@ -6,7 +6,8 @@
 }
 
 .header {
-  padding: var(--space-6) var(--space-6) 0;
+  /* The right side leaves room for the language menu (about 6.25rem wide). */
+  padding: var(--space-6) calc(var(--space-6) + 7rem) 0 var(--space-6);
 }
 
 .name {

@@ -24,6 +24,9 @@ export const en = {
     viewOnGitHub: "View the project on GitHub",
     opensInNewTab: "(opens in a new tab)",
   },
+  languageSwitch: {
+    label: "Site language",
+  },
   notFound: {
     title: "Page not found",
     message: "This address does not match any page of the site.",

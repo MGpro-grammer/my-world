@@ -1,0 +1,112 @@
+/*
+ * Language menu in the top-right corner of every page: a pill with a globe,
+ * the current language and a chevron; below it, a card listing every
+ * language. The menu scrolls away with the page.
+ */
+.switch {
+  position: absolute;
+  /* Same distance from the edges as the list button of the home page. */
+  top: var(--space-6);
+  right: var(--space-6);
+  z-index: 3;
+}
+
+/* Same look as the list button of the home page. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4);
+  border: 1px solid var(--color-text-muted);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+.button:hover,
+[data-open="true"] .button {
+  border-color: var(--color-text);
+}
+
+.chevron {
+  color: var(--color-text-muted);
+  transition: transform var(--duration-fast) var(--easing-standard);
+}
+
+[data-open="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+/* Hidden lists are invisible to the mouse, the keyboard and screen readers. */
+.list {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  min-width: 12rem;
+  margin: 0;
+  padding: var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--color-text-muted) 45%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  box-shadow: 0 12px 32px color-mix(in srgb, #000 60%, transparent);
+  backdrop-filter: blur(8px);
+  list-style: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-0.25rem);
+  transition:
+    opacity var(--duration-fast) var(--easing-standard),
+    transform var(--duration-fast) var(--easing-standard),
+    visibility 0s linear var(--duration-fast);
+}
+
+[data-open="true"] .list {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: calc(var(--radius-md) - var(--space-1));
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.link:hover,
+.link:focus-visible {
+  background: color-mix(in srgb, var(--color-text) 10%, transparent);
+  color: var(--color-text);
+}
+
+.link[aria-current="true"] {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Two-letter code in a fixed-width column, so that the names line up. */
+.code {
+  width: 1.75rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.check {
+  margin-left: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chevron,
+  .list {
+    transition: none;
+  }
+}
