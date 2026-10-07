@@ -31,6 +31,8 @@ export interface Translations {
   };
   /** Home page. */
   readonly home: {
+    /** Second part of the browser tab title, after the author's name. */
+    readonly title: string;
     /** Line shown under the author's name. */
     readonly tagline: string;
     /** Accessible name of the list of projects. */

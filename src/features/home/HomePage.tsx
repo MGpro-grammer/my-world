@@ -32,7 +32,7 @@ export function HomePage() {
 
   return (
     <main className={styles.page}>
-      <title>{`${AUTHOR_NAME} — Portfolio`}</title>
+      <title>{`${AUTHOR_NAME} — ${texts.home.title}`}</title>
       <header className={styles.header}>
         <h1 className={styles.name}>{AUTHOR_NAME}</h1>
         <p className={styles.tagline}>{texts.home.tagline}</p>

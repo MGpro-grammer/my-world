@@ -7,6 +7,7 @@ export const en = {
     skipHint: "Click or press any key to enter",
   },
   home: {
+    title: "Portfolio",
     tagline: "Web and mobile application developer",
     projectsLabel: "Projects",
     listView: "List",
