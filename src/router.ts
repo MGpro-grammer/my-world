@@ -1,5 +1,6 @@
 import { createBrowserRouter, type RouteObject } from "react-router";
 import App from "./App.tsx";
+import { ContactPage } from "./features/contact/ContactPage.tsx";
 import { HomePage } from "./features/home/HomePage.tsx";
 import { LanguageRedirect } from "./features/language/LanguageRedirect.tsx";
 import { NotFoundPage } from "./features/not-found/NotFoundPage.tsx";
@@ -14,6 +15,7 @@ function pagesOfOneLanguage(): RouteObject[] {
   return [
     { index: true, Component: HomePage },
     { path: "projects/:projectId", Component: ProjectPage },
+    { path: "contact", Component: ContactPage },
     { path: "*", Component: NotFoundPage },
   ];
 }

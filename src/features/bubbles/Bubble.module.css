@@ -43,6 +43,14 @@
   color: var(--accent);
 }
 
+/* The contact bubble: a second ring, a gap away, sets it apart from the projects. */
+.bubble[data-distinct="true"] .icon {
+  box-shadow:
+    0 0 0 4px var(--color-bg),
+    0 0 0 6px var(--accent),
+    0 0 24px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
 /*
  * Opened only through data-expanded, set by the state machine of the field.
  * Hidden with opacity only, so screen readers still read the name and summary.

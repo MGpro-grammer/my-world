@@ -13,6 +13,11 @@
   list-style: none;
 }
 
+/* The contact card sits under the projects, apart from them. */
+.contact {
+  margin-top: var(--space-6);
+}
+
 .item {
   /* Default only: replaced by the inline style of each card. */
   --accent: var(--color-text);

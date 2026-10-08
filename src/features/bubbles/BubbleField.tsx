@@ -1,13 +1,14 @@
 import { useEffect, useReducer, useRef } from "react";
 import { placeBubbles, type Rect } from "../../core/layout/placeBubbles.ts";
+import { CONTACT_BUBBLE } from "../../data/contact.ts";
 import { PROJECTS } from "../../data/projects.ts";
 import { useElementSize } from "../../hooks/useElementSize.ts";
 import { useTranslations } from "../../i18n/useTranslations.ts";
 import { bubbleReducer, INITIAL_BUBBLE_STATE, isExpanded } from "./bubbleState.ts";
-import { ProjectBubble } from "./ProjectBubble.tsx";
+import { Bubble, type BubbleItem } from "./Bubble.tsx";
 import styles from "./BubbleField.module.css";
 
-/** Radius of a bubble at rest, in CSS pixels; matches `--size` in ProjectBubble.module.css. */
+/** Radius of a bubble at rest, in CSS pixels; matches `--size` in Bubble.module.css. */
 const BUBBLE_RADIUS = 32;
 
 /** Smallest distance between a bubble and the edges of the field, in CSS pixels. */
@@ -26,13 +27,14 @@ const FREE_CENTER_RATIO = 0.36;
 const TOGGLE_AREA = { width: 180, height: 88 };
 
 /**
- * Area that holds one bubble per project, spread without overlap and placed
- * again whenever the area changes size. It owns the state machine that
- * decides which bubble is open, and is a navigation list for assistive
- * technologies.
+ * Area that holds one bubble per project plus the contact bubble, spread
+ * without overlap and placed again whenever the area changes size. It owns
+ * the state machine that decides which bubble is open. For assistive
+ * technologies, the projects form a navigation list and the contact bubble
+ * follows it.
  */
 export function BubbleField() {
-  const fieldRef = useRef<HTMLElement>(null);
+  const fieldRef = useRef<HTMLDivElement>(null);
   const { width, height } = useElementSize(fieldRef);
   const texts = useTranslations();
   const [state, dispatch] = useReducer(bubbleReducer, INITIAL_BUBBLE_STATE);
@@ -48,36 +50,59 @@ export function BubbleField() {
     return () => document.removeEventListener("pointerdown", handlePointerDown);
   }, []);
 
+  const projectItems: BubbleItem[] = PROJECTS.map((project) => ({
+    id: project.id,
+    name: project.name,
+    summary: texts.projects[project.id].summary,
+    icon: project.icon,
+    accentColor: project.accentColor,
+    path: `/projects/${project.id}`,
+  }));
+  const contactItem: BubbleItem = {
+    id: "contact",
+    name: texts.contact.title,
+    summary: texts.home.contactSummary,
+    ...CONTACT_BUBBLE,
+    path: "/contact",
+    distinct: true,
+  };
+
   const placements = placeBubbles({
     width,
     height,
-    count: PROJECTS.length,
+    count: projectItems.length + 1,
     radius: BUBBLE_RADIUS,
     margin: FIELD_MARGIN,
     exclusions: freeAreas(width, height),
     seed: LAYOUT_SEED,
   });
 
+  const renderBubble = (item: BubbleItem, index: number) => (
+    <Bubble
+      item={item}
+      placement={placements[index]}
+      expanded={isExpanded(state, item.id)}
+      onExpand={() => dispatch({ type: "expand", bubbleId: item.id })}
+      onCollapse={() => dispatch({ type: "collapse", bubbleId: item.id })}
+      onNavigate={() => dispatch({ type: "navigate", bubbleId: item.id })}
+    />
+  );
+
   return (
-    <nav ref={fieldRef} className={styles.field} aria-label={texts.home.projectsLabel}>
+    <div ref={fieldRef} className={styles.field}>
       {width > 0 && (
-        <ul className={styles.list}>
-          {PROJECTS.map((project, index) => (
-            <li key={project.id}>
-              <ProjectBubble
-                project={project}
-                summary={texts.projects[project.id].summary}
-                placement={placements[index]}
-                expanded={isExpanded(state, project.id)}
-                onExpand={() => dispatch({ type: "expand", projectId: project.id })}
-                onCollapse={() => dispatch({ type: "collapse", projectId: project.id })}
-                onNavigate={() => dispatch({ type: "navigate", projectId: project.id })}
-              />
-            </li>
-          ))}
-        </ul>
+        <>
+          <nav aria-label={texts.home.projectsLabel}>
+            <ul className={styles.list}>
+              {projectItems.map((item, index) => (
+                <li key={item.id}>{renderBubble(item, index)}</li>
+              ))}
+            </ul>
+          </nav>
+          {renderBubble(contactItem, projectItems.length)}
+        </>
       )}
-    </nav>
+    </div>
   );
 }
 

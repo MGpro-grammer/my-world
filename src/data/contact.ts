@@ -1,6 +1,13 @@
-import { FileText, Mail, Phone, type LucideIcon } from "lucide-react";
+import { ContactRound, FileText, Mail, Phone, type LucideIcon } from "lucide-react";
 import githubLogo from "../assets/brands/github.svg";
 import linkedinLogo from "../assets/brands/linkedin.png";
+
+/** Look of the contact bubble on the home page, which opens the contact page. */
+export const CONTACT_BUBBLE = {
+  icon: ContactRound,
+  /** Color of the bubble (at least 7:1 on the background). */
+  accentColor: "#e2e8f0",
+} as const;
 
 /** Identifier of a way to reach the author; also the key of its texts. */
 export type ContactChannelId = "linkedin" | "github" | "email" | "phone" | "cv";
