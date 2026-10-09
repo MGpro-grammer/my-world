@@ -157,8 +157,8 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
     icon: { kind: "lucide", icon: FileText },
     accentColor: "#fbbf24",
     image: `${CV_PATH}.webp`,
-    imageWidth: 1191,
-    imageHeight: 1684,
+    imageWidth: 1414,
+    imageHeight: 2000,
     pdf: `${CV_PATH}.pdf`,
   },
 ];

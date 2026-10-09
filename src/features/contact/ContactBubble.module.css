@@ -1,0 +1,71 @@
+/*
+ * Bubble of the contact page: the same 64 px circle as on the home page, with
+ * its name always shown under it. The box is the circle only, so that the
+ * page can center it on its place on the ring.
+ */
+.bubble {
+  /* Default only: replaced by the inline style of each bubble. */
+  --accent: var(--color-text);
+
+  position: relative;
+  display: block;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: none;
+  color: var(--color-text);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bubble:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.circle {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--accent);
+  transition:
+    transform var(--duration-fast) var(--easing-standard),
+    box-shadow var(--duration-fast) var(--easing-standard);
+}
+
+.bubble:hover .circle,
+.bubble:focus-visible .circle {
+  transform: scale(1.08);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+/* Official logos keep their own proportions: only their height is set. */
+.logo {
+  width: auto;
+  height: 28px;
+}
+
+.name {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 50%;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--accent);
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circle {
+    transition: none;
+  }
+}
