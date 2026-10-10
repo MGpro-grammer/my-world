@@ -5,7 +5,10 @@ import type { ProjectId, ProjectKind } from "../data/projects.ts";
 export interface ProjectTexts {
   /** One-line description shown in the expanded bubble. */
   readonly summary: string;
-  /** Longer description shown on the project page, based on the repository description. */
+  /**
+   * Description shown on the project page and given to search engines and
+   * shared links. Kept in line with the "About" description of the repository.
+   */
   readonly description: string;
   /** What the author did in the project. */
   readonly role: string;

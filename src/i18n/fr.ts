@@ -75,7 +75,7 @@ export const fr = {
     "hospital-security": {
       summary: "Dossiers médicaux chiffrés de bout en bout",
       description:
-        "L'objectif de ce projet est de mettre en place un système client/serveur sécurisé de gestion de dossiers médicaux.",
+        "Plateforme de dossiers médicaux chiffrés de bout en bout : connexion sans mot de passe (WebAuthn), clés de chiffrement dérivées de l'authentificateur de l'utilisateur, et un serveur incapable de lire les dossiers qu'il conserve.",
       role: "Co-développement à deux, rôles partagés, centré sur la sécurité de l'information",
       videoDescription:
         "La vidéo montre un patient fictif qui se connecte avec une clé d'accès Windows, déverrouille ses clés, dépose son dossier médical chiffré puis le relit ; un médecin fictif se connecte ensuite et ouvre le dossier d'un patient qui lui a donné son autorisation.",
@@ -83,7 +83,7 @@ export const fr = {
     "metre-moi-au-regime": {
       summary: "Suivi nutritionnel avec scan de code-barres",
       description:
-        "Application de bureau de suivi nutritionnel développée avec JavaFX : enregistrez vos repas, scannez des produits et suivez vos objectifs quotidiens en calories et en macronutriments.",
+        "Application de bureau de suivi nutritionnel développée avec JavaFX : enregistrez vos repas et vos activités, trouvez les produits par nom ou par code-barres grâce à Open Food Facts, et suivez vos objectifs quotidiens en calories et en macronutriments.",
       role: "Base de données et ses tests, vues et contrôleurs JavaFX",
       videoDescription:
         "La vidéo montre l'inscription, le questionnaire qui fixe les objectifs, le tableau de bord des calories et des macronutriments, l'ajout d'un aliment par scan d'une photo de code-barres ou par recherche, puis l'enregistrement d'une activité physique.",
@@ -91,14 +91,15 @@ export const fr = {
     convertisor: {
       summary: "Vidéo YouTube vers MP3, MP4 ou GIF",
       description:
-        "Projet dans lequel nous convertissons une vidéo en ligne (via une URL) en fichier .mp3, .mp4 et plus encore.",
+        "Application de bureau Windows qui télécharge une vidéo YouTube à partir de son adresse, en MP3, en MP4 ou en GIF animé. Un seul installateur, FFmpeg inclus, et une vérification des mises à jour au démarrage.",
       role: "Seul développeur",
       videoDescription:
         "La vidéo montre le téléchargement en MP3 de l'audio d'une vidéo YouTube à partir de son adresse, le fichier obtenu dans l'onglet Fichiers, puis sa lecture dans le lecteur multimédia de Windows.",
     },
     repartitor: {
       summary: "Répartition de textes entre traducteurs",
-      description: "Outil de gestion des textes pour un service de traduction.",
+      description:
+        "Application web pour un service de traduction : le répartiteur attribue chaque texte à un traducteur et à un éditeur, puis suit les délais et l'avancement.",
       role: "Backend",
       videoDescription:
         "La vidéo montre l'accueil, le choix d'un rôle (répartiteur ou traducteur), la liste des textes avec leur date limite et l'état de leur traduction et de leur édition, les textes attribués à un traducteur, puis la page de statistiques.",
@@ -106,21 +107,23 @@ export const fr = {
     "module-odoo-interview": {
       summary: "Gestion de feedbacks intégrée à Odoo",
       description:
-        "Projet de gestion de feedbacks pour une application web. Le projet permet aux utilisateurs de soumettre, visualiser et gérer des feedbacks sur différents sujets.",
+        "Module Odoo 18 de feedbacks d'entretiens d'embauche, avec des questions notées par compétence, et un site Django qui filtre les feedbacks par compétence, poste, note et date.",
       role: "Backend",
       videoDescription:
         "La vidéo montre le module dans le catalogue d'applications d'Odoo, les questions d'entretien notées par compétence, puis le site associé où l'on consulte les feedbacks d'entretien filtrés par compétence, poste, score et date.",
     },
     synthesizer: {
       summary: "Synthétiseur C++ à deux oscillateurs",
-      description: "Ce projet est la réalisation d'un petit synthétiseur basique.",
+      description:
+        "Petit synthétiseur en C++ : un ou deux oscillateurs (sinus, carré, dent de scie), enveloppe, filtre et écho, joués sur un clavier de 13 touches.",
       role: "Seul développeur",
       videoDescription:
         "La vidéo montre le réglage du synthétiseur : forme d'onde, second oscillateur, attaque et relâchement, fréquence de coupure et résonance du filtre, écho, avec les notes jouées sur ses 13 touches.",
     },
     wordeul: {
       summary: "Wordle en JavaScript pur, avec des mots de 5 à 10 lettres",
-      description: "Projet du fameux jeu Wordeul.",
+      description:
+        "Jeu de mots inspiré de Wordle, en JavaScript pur : des mots de 5 à 10 lettres, un mot secret saisi en masqué ou tiré au hasard, et un clavier virtuel qui indique l'état de chaque lettre.",
       role: "Seul développeur",
       videoDescription:
         "La vidéo montre la configuration d'une partie (mot secret saisi en masqué ou tiré au hasard, nombre d'essais), puis des essais colorés lettre par lettre : vert si la lettre est bien placée, jaune si elle est mal placée, rouge si elle est absente ; le clavier virtuel reprend ces couleurs.",

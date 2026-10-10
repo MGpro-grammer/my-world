@@ -34,7 +34,7 @@ export function ProjectPage() {
     <main className={styles.page} style={style}>
       <PageHead
         title={`${project.name} — ${AUTHOR_NAME}`}
-        description={`${projectTexts.summary}. ${projectTexts.description}`}
+        description={projectTexts.description}
         path={`/projects/${project.id}`}
       />
       <article className={styles.card}>

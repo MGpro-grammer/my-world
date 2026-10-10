@@ -76,7 +76,7 @@ export const en = {
     "hospital-security": {
       summary: "End-to-end encrypted medical records",
       description:
-        "The goal of this project is to implement a secure client/server system handling medical records.",
+        "End-to-end encrypted medical records platform: passwordless sign-in with WebAuthn, encryption keys derived from the user's authenticator, and a server that cannot read the records it stores.",
       role: "Co-developed by two, shared roles, focused on information security",
       videoDescription:
         "The video shows a fictitious patient signing in with a Windows passkey, unlocking their keys, uploading their encrypted medical record and reading it back; a fictitious doctor then signs in and opens the record of a patient who authorized them.",
@@ -84,7 +84,7 @@ export const en = {
     "metre-moi-au-regime": {
       summary: "Nutrition tracker with barcode scanning",
       description:
-        "Desktop nutrition tracker built with JavaFX — log your meals, scan products and follow your daily calorie and macronutrient goals.",
+        "Desktop nutrition tracker built with JavaFX: log your meals and activities, find products by name or barcode through Open Food Facts, and follow your daily calorie and macronutrient goals.",
       role: "Database and its tests, JavaFX views and controllers",
       videoDescription:
         "The video shows sign-up, the questionnaire that sets the goals, the calorie and macronutrient dashboard, adding a food by scanning a barcode photo or by searching, then logging a physical activity.",
@@ -92,14 +92,15 @@ export const en = {
     convertisor: {
       summary: "YouTube video to MP3, MP4 or GIF",
       description:
-        "Project in which we convert an online video (from its URL) into an .mp3 or .mp4 file, and more.",
+        "Windows desktop app that downloads a YouTube video from its URL as MP3, MP4 or animated GIF. Ships as a single installer with FFmpeg included, and checks for updates at startup.",
       role: "Sole developer",
       videoDescription:
         "The video shows the MP3 download of a YouTube video's audio from its address, the resulting file in the Files tab, then its playback in the Windows media player.",
     },
     repartitor: {
       summary: "Distributing texts among translators",
-      description: "Text management tool for a translation service.",
+      description:
+        "Web app for a translation service: the dispatcher assigns each text to a translator and an editor, then tracks deadlines and progress.",
       role: "Back end",
       videoDescription:
         "The video shows the home page, choosing a role (dispatcher or translator), the list of texts with their deadline and the status of their translation and editing, the texts assigned to a translator, then the statistics page.",
@@ -107,21 +108,23 @@ export const en = {
     "module-odoo-interview": {
       summary: "Feedback management built into Odoo",
       description:
-        "Feedback management project for a web application. It lets users submit, view and manage feedback on various topics.",
+        "Odoo 18 module for job interview feedback, with questions scored by skill, and a Django website that filters the feedback by skill, position, score and date.",
       role: "Back end",
       videoDescription:
         "The video shows the module in Odoo's app catalog, the interview questions scored by skill, then the companion website where interview feedback is filtered by skill, position, score and date.",
     },
     synthesizer: {
       summary: "Two-oscillator C++ synthesizer",
-      description: "This project is the making of a small, basic synthesizer.",
+      description:
+        "Small C++ synthesizer: one or two oscillators (sine, square, sawtooth), envelope, filter and delay, played on a 13-key keyboard.",
       role: "Sole developer",
       videoDescription:
         "The video shows the synthesizer being tuned: waveform, second oscillator, attack and release, filter cutoff and resonance, delay, with notes played on its 13 keys.",
     },
     wordeul: {
       summary: "Wordle in plain JavaScript, with 5- to 10-letter words",
-      description: "Project of the famous game Wordeul.",
+      description:
+        "Wordle-style word game in plain JavaScript: 5- to 10-letter words, a secret word typed in hidden or picked at random, and a virtual keyboard that shows each letter's status.",
       role: "Sole developer",
       videoDescription:
         "The video shows setting up a game (secret word typed hidden or picked at random, number of attempts), then guesses colored letter by letter: green if the letter is in the right place, yellow if it is misplaced, red if it is absent; the on-screen keyboard repeats these colors.",
