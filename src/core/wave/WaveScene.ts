@@ -5,6 +5,22 @@ import type { WaveSimulation } from "./WaveSimulation.ts";
 /** Below this wave height everywhere, the surface looks flat and the loop sleeps. */
 const REST_THRESHOLD = 0.05;
 
+/** Time covered by one simulation step: the waves advance 60 steps per second on every screen. */
+const STEP_DURATION_MS = 1000 / 60;
+
+/**
+ * Most steps taken in one frame. After a long pause (a busy page, a tab
+ * brought back), the waves resume instead of racing to catch up.
+ */
+const MAX_STEPS_PER_FRAME = 4;
+
+/**
+ * Fraction of a step by which a frame may come early and still take that
+ * step. Frame times jitter by a fraction of a millisecond: without this
+ * margin, a 60 Hz screen would sometimes take no step then two, a visible stutter.
+ */
+const EARLY_FRAME_TOLERANCE = 0.25;
+
 /** Collaborators of a {@link WaveScene}, created outside and given to it. */
 export interface WaveSceneDependencies {
   /** Wave physics. */
@@ -25,6 +41,10 @@ export interface WaveSceneDependencies {
  *
  * Once started, the loop sleeps as soon as the surface is flat, so an idle
  * page costs no CPU, and wakes up at the next disturbance.
+ *
+ * The simulation advances at a fixed rate of 60 steps per second, whatever
+ * the refresh rate of the screen: the waves move at the same speed on a
+ * 60 Hz and on a 144 Hz screen, and a frame without a new step is not drawn.
  */
 export class WaveScene {
   private readonly simulation: WaveSimulation;
@@ -32,6 +52,10 @@ export class WaveScene {
   private readonly scheduler: FrameScheduler;
   private started = false;
   private frameId: number | null = null;
+  /** Time of the previous frame, in milliseconds; `null` when the loop has just (re)started. */
+  private lastFrameTime: number | null = null;
+  /** Time not yet turned into steps, in milliseconds; slightly negative after an early frame. */
+  private pendingTime = 0;
 
   /** @param dependencies - Simulation, renderer and frame scheduler to use. */
   constructor(dependencies: WaveSceneDependencies) {
@@ -62,6 +86,8 @@ export class WaveScene {
   /** Stops the animation loop. Does nothing if it is not started. */
   stop(): void {
     this.started = false;
+    this.lastFrameTime = null;
+    this.pendingTime = 0;
     if (this.frameId !== null) {
       this.scheduler.cancel(this.frameId);
       this.frameId = null;
@@ -107,16 +133,52 @@ export class WaveScene {
   }
 
   /**
-   * One frame of the loop: advance the physics, draw, then plan the next
-   * frame only while waves are still visible.
+   * One frame of the loop: advance the physics by as many fixed steps as the
+   * elapsed time allows, draw if anything changed, then plan the next frame
+   * only while waves are still visible.
    * Arrow function, so that `this` stays bound when the scheduler calls it.
+   * @param time - Time of the frame, in milliseconds, given by the scheduler.
    */
-  private readonly tick = (): void => {
+  private readonly tick = (time: number): void => {
     this.frameId = null;
-    this.simulation.step();
-    this.renderer.render(this.simulation);
+    const steps = this.stepsFor(time);
+    for (let step = 0; step < steps; step++) {
+      this.simulation.step();
+    }
+    if (steps > 0) {
+      this.renderer.render(this.simulation);
+    }
     if (this.simulation.peakHeight >= REST_THRESHOLD) {
       this.wake();
+    } else {
+      // Asleep: the next wake-up starts counting time afresh.
+      this.lastFrameTime = null;
+      this.pendingTime = 0;
     }
   };
+
+  /**
+   * Turns the time elapsed since the previous frame into a number of steps.
+   * The first frame after a (re)start always takes one step, so that a
+   * disturbance shows at once.
+   * @param time - Time of the current frame, in milliseconds.
+   * @returns From 0 to {@link MAX_STEPS_PER_FRAME}.
+   */
+  private stepsFor(time: number): number {
+    const lastFrameTime = this.lastFrameTime;
+    this.lastFrameTime = time;
+    if (lastFrameTime === null) {
+      this.pendingTime = 0;
+      return 1;
+    }
+    this.pendingTime += Math.max(0, time - lastFrameTime);
+    const steps = Math.floor(this.pendingTime / STEP_DURATION_MS + EARLY_FRAME_TOLERANCE);
+    if (steps > MAX_STEPS_PER_FRAME) {
+      // Too far behind: drop the lost time rather than run a burst of steps.
+      this.pendingTime = 0;
+      return MAX_STEPS_PER_FRAME;
+    }
+    this.pendingTime -= steps * STEP_DURATION_MS;
+    return steps;
+  }
 }
