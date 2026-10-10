@@ -1,16 +1,8 @@
 import { DotStyleFactory } from "./DotStyleFactory.ts";
 import { fitCanvasToArea } from "./fitCanvasToArea.ts";
 import type { WaveField } from "./WaveField.ts";
+import { FULL_INTENSITY_HEIGHT, LIFT_PER_UNIT, STYLE_LEVELS } from "./waveLook.ts";
 import type { WaveRenderer } from "./WaveRenderer.ts";
-
-/** Number of distinct dot looks shared by all the dots. */
-const STYLE_LEVELS = 32;
-
-/** Upward shift of a dot, in CSS pixels, per unit of wave height. */
-const LIFT_PER_UNIT = 1.2;
-
-/** Wave height at which a dot reaches its brightest look. */
-const FULL_INTENSITY_HEIGHT = 6;
 
 /**
  * Default renderer: every frame, each dot is lifted by its wave height and

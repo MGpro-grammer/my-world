@@ -84,5 +84,14 @@ export function WaveBackground() {
     };
   }, [prefersReducedMotion, pixelRatio]);
 
-  return <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />;
+  // A canvas keeps its first kind of context (WebGL or 2D): the key gives a
+  // new canvas when the visitor switches reduced motion on or off.
+  return (
+    <canvas
+      key={prefersReducedMotion ? "still" : "animated"}
+      ref={canvasRef}
+      className={styles.canvas}
+      aria-hidden="true"
+    />
+  );
 }

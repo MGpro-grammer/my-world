@@ -1,6 +1,9 @@
 /** A full circle, in radians. */
 const FULL_TURN = Math.PI * 2;
 
+/** Color as red, green, blue and opacity, each from 0 to 1, for APIs that take numbers (WebGL). */
+export type RgbaColor = readonly [red: number, green: number, blue: number, alpha: number];
+
 /**
  * Look shared by every dot that has the same intensity: size and color.
  *
@@ -13,14 +16,18 @@ export class DotStyle {
   readonly radius: number;
   /** CSS color used to fill the dot. */
   readonly color: string;
+  /** The same color as numbers, for renderers that do not read CSS colors. */
+  readonly rgba: RgbaColor;
 
   /**
    * @param radius - Radius of the dot, in CSS pixels.
    * @param color - CSS color used to fill the dot.
+   * @param rgba - The same color as numbers from 0 to 1.
    */
-  constructor(radius: number, color: string) {
+  constructor(radius: number, color: string, rgba: RgbaColor) {
     this.radius = radius;
     this.color = color;
+    this.rgba = rgba;
   }
 
   /**

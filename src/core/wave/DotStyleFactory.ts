@@ -1,4 +1,4 @@
-import { DotStyle } from "./DotStyle.ts";
+import { DotStyle, type RgbaColor } from "./DotStyle.ts";
 
 /** Settings of a {@link DotStyleFactory}, fixed for its whole lifetime. */
 export interface DotStyleFactoryOptions {
@@ -90,6 +90,29 @@ export class DotStyleFactory {
     const lightness = mix(REST_LOOK.lightness, CREST_LOOK.lightness);
     const alpha = mix(REST_LOOK.alpha, CREST_LOOK.alpha);
     const radius = mix(REST_LOOK.radius, CREST_LOOK.radius);
-    return new DotStyle(radius, `hsl(${hue} ${saturation}% ${lightness}% / ${alpha})`);
+    return new DotStyle(
+      radius,
+      `hsl(${hue} ${saturation}% ${lightness}% / ${alpha})`,
+      hslToRgba(hue, saturation, lightness, alpha),
+    );
   }
+}
+
+/**
+ * Converts an HSL color into red, green and blue, with the formula of the
+ * CSS Color specification, so that both forms of a style show the same color.
+ * @param hue - Hue, in degrees.
+ * @param saturation - Saturation, in percent.
+ * @param lightness - Lightness, in percent.
+ * @param alpha - Opacity, from 0 to 1.
+ * @returns The color as numbers from 0 to 1.
+ */
+function hslToRgba(hue: number, saturation: number, lightness: number, alpha: number): RgbaColor {
+  const s = saturation / 100;
+  const l = lightness / 100;
+  const channel = (offset: number): number => {
+    const k = (offset + hue / 30) % 12;
+    return l - s * Math.min(l, 1 - l) * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+  };
+  return [channel(0), channel(8), channel(4), alpha];
 }
