@@ -1,4 +1,4 @@
-import { createBrowserRouter, type RouteObject } from "react-router";
+import type { RouteObject } from "react-router";
 import App from "./App.tsx";
 import { ContactPage } from "./features/contact/ContactPage.tsx";
 import { HomePage } from "./features/home/HomePage.tsx";
@@ -27,7 +27,7 @@ function pagesOfOneLanguage(): RouteObject[] {
  * `/en/…`); the bare address `/` sends the visitor to one of them, and an
  * address with an unknown language shows the "page not found" page.
  */
-export const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: "/",
     Component: App,
@@ -37,4 +37,4 @@ export const router = createBrowserRouter([
       { path: "*", Component: NotFoundPage },
     ],
   },
-]);
+];

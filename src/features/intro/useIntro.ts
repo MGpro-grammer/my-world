@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useLayoutEffect, useReducer } from "react";
 import { INTRO_DURATION_MS, INTRO_FADE_MS, introReducer, type IntroStatus } from "./introState.ts";
 
 /** Session storage key remembering that the welcome screen was already shown. */
@@ -15,12 +15,20 @@ export interface Intro {
 /**
  * Runs the welcome screen: shown once per visit, it fades out by itself after
  * a few seconds, or right away on a click, a tap or any key.
+ *
+ * It always starts as `intro`, like the prerendered page, which cannot know
+ * the visit; a visitor who already saw it gets `ready` before the screen is
+ * painted.
  * @returns Its current state and a way to skip it.
  */
 export function useIntro(): Intro {
-  const [status, dispatch] = useReducer(introReducer, undefined, () =>
-    hasSeenIntro() ? "ready" : "intro",
-  );
+  const [status, dispatch] = useReducer(introReducer, "intro");
+
+  useLayoutEffect(() => {
+    if (hasSeenIntro()) {
+      dispatch("alreadySeen");
+    }
+  }, []);
 
   useEffect(() => {
     if (status === "intro") {

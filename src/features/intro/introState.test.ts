@@ -18,6 +18,9 @@ describe("introReducer", () => {
     ["ready", "skip", "ready"],
     ["ready", "timeout", "ready"],
     ["ready", "fadeEnd", "ready"],
+    ["intro", "alreadySeen", "ready"],
+    ["revealing", "alreadySeen", "revealing"],
+    ["ready", "alreadySeen", "ready"],
   ])("goes from %s on %s to %s", (status, action, expected) => {
     expect(introReducer(status, action)).toBe(expected);
   });

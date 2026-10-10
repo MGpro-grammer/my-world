@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 /**
  * Returns the ratio between device pixels and CSS pixels of the screen
@@ -7,19 +7,42 @@ import { useEffect, useState } from "react";
  *
  * Observer: watches a media query that only matches the current ratio, and
  * watches again with the new ratio each time it changes.
- * @returns The current `window.devicePixelRatio`.
+ * @returns The current `window.devicePixelRatio`; `1` while the page is
+ *   prerendered, as there is no screen yet.
  */
 export function useDevicePixelRatio(): number {
-  const [pixelRatio, setPixelRatio] = useState<number>(() => window.devicePixelRatio);
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(`(resolution: ${pixelRatio}dppx)`);
-    const handleChange = () => {
-      setPixelRatio(window.devicePixelRatio);
-    };
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [pixelRatio]);
+/**
+ * Calls `onChange` each time the ratio changes.
+ * @param onChange - Given by React.
+ * @returns A function that stops listening.
+ */
+function subscribe(onChange: () => void): () => void {
+  let mediaQuery = watchCurrentRatio();
 
-  return pixelRatio;
+  function handleChange() {
+    mediaQuery.removeEventListener("change", handleChange);
+    mediaQuery = watchCurrentRatio();
+    onChange();
+  }
+
+  function watchCurrentRatio(): MediaQueryList {
+    const query = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+    query.addEventListener("change", handleChange);
+    return query;
+  }
+
+  return () => mediaQuery.removeEventListener("change", handleChange);
+}
+
+/** @returns The current ratio in the browser. */
+function getSnapshot(): number {
+  return window.devicePixelRatio;
+}
+
+/** @returns The value used while prerendering. */
+function getServerSnapshot(): number {
+  return 1;
 }

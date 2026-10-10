@@ -15,7 +15,9 @@ export type IntroAction =
   /** The welcome text has been shown long enough. */
   | "timeout"
   /** The fade-out is over. */
-  | "fadeEnd";
+  | "fadeEnd"
+  /** The welcome screen was already shown during this visit. */
+  | "alreadySeen";
 
 /** Duration of the fade-in of the welcome text, in milliseconds. */
 export const INTRO_APPEAR_MS = 1400;
@@ -39,5 +41,7 @@ export function introReducer(status: IntroStatus, action: IntroAction): IntroSta
       return status === "intro" ? "revealing" : status;
     case "fadeEnd":
       return status === "revealing" ? "ready" : status;
+    case "alreadySeen":
+      return status === "intro" ? "ready" : status;
   }
 }

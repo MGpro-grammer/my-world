@@ -1,12 +1,23 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import "@fontsource-variable/outfit";
 import "./styles/global.css";
-import { router } from "./router.ts";
+import { routes } from "./routes.ts";
 
-createRoot(document.getElementById("root")!).render(
+const router = createBrowserRouter(routes);
+const container = document.getElementById("root")!;
+const app = (
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  </StrictMode>
 );
+
+// A prerendered page already holds its HTML: React takes it over instead of
+// drawing it again. The bare address and the "page not found" page come empty.
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}
