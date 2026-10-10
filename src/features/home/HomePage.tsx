@@ -1,5 +1,6 @@
 import { List } from "lucide-react";
 import { useSearchParams } from "react-router";
+import { PageHead } from "../../components/PageHead/PageHead.tsx";
 import { AUTHOR_NAME } from "../../data/author.ts";
 import { useTranslations } from "../../i18n/useTranslations.ts";
 import { BubbleField } from "../bubbles/BubbleField.tsx";
@@ -32,7 +33,11 @@ export function HomePage() {
 
   return (
     <main className={styles.page}>
-      <title>{`${AUTHOR_NAME} — ${texts.home.title}`}</title>
+      <PageHead
+        title={`${AUTHOR_NAME} — ${texts.home.title}`}
+        description={texts.home.description}
+        path="/"
+      />
       <header className={styles.header}>
         <h1 className={styles.name}>{AUTHOR_NAME}</h1>
         <p className={styles.tagline}>{texts.home.tagline}</p>

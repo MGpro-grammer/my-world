@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router";
+import { PageHead } from "../../components/PageHead/PageHead.tsx";
 import { AUTHOR_NAME } from "../../data/author.ts";
 import { useLocalizedPath } from "../../i18n/useLanguage.ts";
 import { useTranslations } from "../../i18n/useTranslations.ts";
@@ -12,7 +13,7 @@ export function NotFoundPage() {
 
   return (
     <main className={styles.page}>
-      <title>{`${texts.notFound.title} — ${AUTHOR_NAME}`}</title>
+      <PageHead title={`${texts.notFound.title} — ${AUTHOR_NAME}`} />
       <div className={styles.card}>
         <h1 className={styles.title}>{texts.notFound.title}</h1>
         <p className={styles.message}>{texts.notFound.message}</p>

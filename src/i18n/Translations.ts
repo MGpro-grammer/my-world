@@ -29,6 +29,8 @@ export interface Translations {
     readonly opensInNewTab: string;
     /** Button that closes a dialog. */
     readonly close: string;
+    /** Text alternative of the picture shown when a link to the site is shared. */
+    readonly socialImageDescription: string;
   };
   /** Welcome screen shown once per visit. */
   readonly intro: {
@@ -49,6 +51,8 @@ export interface Translations {
     readonly listView: string;
     /** One-line description of the contact bubble, under its name. */
     readonly contactSummary: string;
+    /** Summary of the home page for search engines and shared links (about 150 characters). */
+    readonly description: string;
   };
   /** Page of one project. */
   readonly projectPage: {
@@ -75,6 +79,8 @@ export interface Translations {
     readonly intro: string;
     /** Link back to the home page. */
     readonly back: string;
+    /** Summary of the contact page for search engines and shared links. */
+    readonly description: string;
     /** Name of each way to reach the author, shown on its bubble. */
     readonly channels: Readonly<Record<ContactChannelId, string>>;
     /** Button that copies the address or the number. */

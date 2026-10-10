@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { useState, type CSSProperties } from "react";
 import { Link } from "react-router";
+import { PageHead } from "../../components/PageHead/PageHead.tsx";
 import { AUTHOR_NAME } from "../../data/author.ts";
 import { CONTACT_CHANNELS } from "../../data/contact.ts";
 import { useLocalizedPath } from "../../i18n/useLanguage.ts";
@@ -25,7 +26,11 @@ export function ContactPage() {
 
   return (
     <main className={styles.page}>
-      <title>{`${texts.contact.title} — ${AUTHOR_NAME}`}</title>
+      <PageHead
+        title={`${texts.contact.title} — ${AUTHOR_NAME}`}
+        description={texts.contact.description}
+        path="/contact"
+      />
       <Link to={localize("/")} className={styles.back}>
         <ArrowLeft size={18} aria-hidden="true" />
         {texts.contact.back}

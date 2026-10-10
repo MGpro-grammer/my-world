@@ -5,6 +5,8 @@ export const fr = {
   common: {
     opensInNewTab: "(s'ouvre dans un nouvel onglet)",
     close: "Fermer",
+    socialImageDescription:
+      "Georges Mouratidis, développeur d'applications web et mobile : portfolio de projets.",
   },
   intro: {
     welcome: "Bienvenue dans l'univers de",
@@ -16,6 +18,8 @@ export const fr = {
     projectsLabel: "Projets",
     listView: "Liste",
     contactSummary: "LinkedIn, GitHub, e-mail, téléphone et CV",
+    description:
+      "Portfolio de Georges Mouratidis, développeur d'applications web et mobile : sept projets avec leur vidéo de démonstration, et ses coordonnées.",
   },
   projectPage: {
     back: "Retour aux projets",
@@ -33,6 +37,8 @@ export const fr = {
     title: "Contact",
     intro: "Choisissez comment me joindre.",
     back: "Retour à l'accueil",
+    description:
+      "Contacter Georges Mouratidis, développeur d'applications web et mobile : LinkedIn, GitHub, e-mail, téléphone et CV.",
     channels: {
       linkedin: "LinkedIn",
       github: "GitHub",

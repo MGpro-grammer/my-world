@@ -1,6 +1,7 @@
 import { ArrowLeft, ExternalLink, VideoOff } from "lucide-react";
 import type { CSSProperties } from "react";
 import { Link, useParams } from "react-router";
+import { PageHead } from "../../components/PageHead/PageHead.tsx";
 import { AUTHOR_NAME } from "../../data/author.ts";
 import { findProject } from "../../data/projects.ts";
 import { useLocalizedPath } from "../../i18n/useLanguage.ts";
@@ -31,7 +32,11 @@ export function ProjectPage() {
 
   return (
     <main className={styles.page} style={style}>
-      <title>{`${project.name} — ${AUTHOR_NAME}`}</title>
+      <PageHead
+        title={`${project.name} — ${AUTHOR_NAME}`}
+        description={`${projectTexts.summary}. ${projectTexts.description}`}
+        path={`/projects/${project.id}`}
+      />
       <article className={styles.card}>
         <Link to={localize("/")} className={styles.back}>
           <ArrowLeft size={18} aria-hidden="true" />

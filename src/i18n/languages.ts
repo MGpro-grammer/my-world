@@ -31,6 +31,15 @@ export const LANGUAGE_NAMES: Readonly<Record<Language, string>> = {
 };
 
 /**
+ * Open Graph locale of each language (language and country), given to the
+ * social networks that show a preview of a shared link.
+ */
+export const OPEN_GRAPH_LOCALES: Readonly<Record<Language, string>> = {
+  fr: "fr_BE",
+  en: "en_US",
+};
+
+/**
  * Tells whether a piece of text is one of the site's language codes.
  * @param value - Text to check, e.g. the first part of an address.
  * @returns `true`, with `value` narrowed to {@link Language}, if it is one.

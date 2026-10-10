@@ -5,6 +5,8 @@ export const en = {
   common: {
     opensInNewTab: "(opens in a new tab)",
     close: "Close",
+    socialImageDescription:
+      "Georges Mouratidis, web and mobile application developer: portfolio of projects.",
   },
   intro: {
     welcome: "Welcome to the world of",
@@ -16,6 +18,8 @@ export const en = {
     projectsLabel: "Projects",
     listView: "List",
     contactSummary: "LinkedIn, GitHub, email, phone and résumé",
+    description:
+      "Portfolio of Georges Mouratidis, web and mobile application developer: seven projects with their demo video, and how to reach him.",
   },
   projectPage: {
     back: "Back to projects",
@@ -33,6 +37,8 @@ export const en = {
     title: "Contact",
     intro: "Choose how to reach me.",
     back: "Back to home",
+    description:
+      "Contact Georges Mouratidis, web and mobile application developer: LinkedIn, GitHub, email, phone and résumé.",
     channels: {
       linkedin: "LinkedIn",
       github: "GitHub",
