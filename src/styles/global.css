@@ -14,7 +14,6 @@
   --color-bg: #030812;
   --color-text: #eef4fb;
   --color-text-muted: #93a4b8;
-  --color-contact: #e2e8f0;
 
   /* Typography (Outfit is self-hosted through @fontsource-variable/outfit) */
   --font-family-base: "Outfit Variable", system-ui, sans-serif;
