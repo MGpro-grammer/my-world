@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Server build used while prerendering, deleted at the end of the build
+dist-server
