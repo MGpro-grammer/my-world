@@ -27,11 +27,15 @@ export function pathInLanguage(pathname: string, language: Language): string {
 
 /**
  * Builds the address of a page in a language.
+ *
+ * It ends with a slash, like the official address of the page: each page is
+ * published as a folder (`en/contact/index.html`), which GitHub Pages serves
+ * at `…/contact/` and only reaches from `…/contact` through a redirection.
  * @param language - Language of the page.
  * @param path - Path of the page without language, starting with `/`
  *   (e.g. `"/"` or `"/projects/wordeul"`).
- * @returns The full path, e.g. `"/en"` or `"/en/projects/wordeul"`.
+ * @returns The full path, e.g. `"/en/"` or `"/en/projects/wordeul/"`.
  */
 export function localizedPath(language: Language, path: string): string {
-  return path === "/" ? `/${language}` : `/${language}${path}`;
+  return path === "/" ? `/${language}/` : `/${language}${path}/`;
 }

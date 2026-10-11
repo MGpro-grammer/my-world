@@ -2,6 +2,7 @@ import { List } from "lucide-react";
 import { useSearchParams } from "react-router";
 import { PageHead } from "../../components/PageHead/PageHead.tsx";
 import { AUTHOR_NAME } from "../../data/author.ts";
+import { useHydrated } from "../../hooks/useHydrated.ts";
 import { useTranslations } from "../../i18n/useTranslations.ts";
 import { BubbleField } from "../bubbles/BubbleField.tsx";
 import { IntroOverlay } from "../intro/IntroOverlay.tsx";
@@ -25,7 +26,10 @@ export function HomePage() {
   const texts = useTranslations();
   const intro = useIntro();
   const [searchParams, setSearchParams] = useSearchParams();
-  const showList = searchParams.get(VIEW_PARAM) === LIST_VIEW;
+  // The prerendered page shows the bubbles: the list replaces them once React
+  // has taken the page over, so that both draw the same page at first.
+  const hydrated = useHydrated();
+  const showList = hydrated && searchParams.get(VIEW_PARAM) === LIST_VIEW;
 
   const toggleView = () => {
     setSearchParams(showList ? {} : { [VIEW_PARAM]: LIST_VIEW }, { replace: true });

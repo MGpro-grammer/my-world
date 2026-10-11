@@ -31,7 +31,7 @@ export function prerenderedPages(): PrerenderedPage[] {
       language,
       path,
       url: pageUrl(language, path),
-      file: `${localizedPath(language, path).slice(1)}/index.html`,
+      file: `${localizedPath(language, path).slice(1)}index.html`,
     })),
   );
 }

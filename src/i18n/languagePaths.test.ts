@@ -20,20 +20,24 @@ describe("languageOfPath", () => {
 
 describe("localizedPath", () => {
   it("builds the home page and the other pages of a language", () => {
-    expect(localizedPath("en", "/")).toBe("/en");
-    expect(localizedPath("fr", "/projects/wordeul")).toBe("/fr/projects/wordeul");
+    expect(localizedPath("en", "/")).toBe("/en/");
+    expect(localizedPath("fr", "/projects/wordeul")).toBe("/fr/projects/wordeul/");
   });
 });
 
 describe("pathInLanguage", () => {
   it("keeps the same page in the other language", () => {
-    expect(pathInLanguage("/fr/projects/wordeul", "en")).toBe("/en/projects/wordeul");
+    expect(pathInLanguage("/fr/projects/wordeul/", "en")).toBe("/en/projects/wordeul/");
+    expect(pathInLanguage("/en/contact/", "fr")).toBe("/fr/contact/");
+    expect(pathInLanguage("/en/", "fr")).toBe("/fr/");
+  });
+
+  it("keeps an address typed without its final slash as it is", () => {
     expect(pathInLanguage("/en/contact", "fr")).toBe("/fr/contact");
-    expect(pathInLanguage("/en", "fr")).toBe("/fr");
   });
 
   it("leads to the home page of the language when the path has none", () => {
-    expect(pathInLanguage("/", "fr")).toBe("/fr");
-    expect(pathInLanguage("/de/contact", "en")).toBe("/en");
+    expect(pathInLanguage("/", "fr")).toBe("/fr/");
+    expect(pathInLanguage("/de/contact", "en")).toBe("/en/");
   });
 });
