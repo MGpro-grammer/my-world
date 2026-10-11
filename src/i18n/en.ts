@@ -59,9 +59,8 @@ export const en = {
       call: "Call",
     },
     cv: {
-      imageDescription:
-        "Résumé of Georges Mouratidis, web and mobile application developer (in French).",
-      download: "Download the résumé (PDF, in French)",
+      imageDescription: "Résumé of Georges Mouratidis, web and mobile application developer.",
+      download: "Download the résumé (PDF)",
     },
   },
   languageSwitch: {

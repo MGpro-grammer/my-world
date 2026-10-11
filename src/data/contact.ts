@@ -1,6 +1,7 @@
 import { ContactRound, FileText, Mail, Phone, type LucideIcon } from "lucide-react";
 import githubLogo from "../assets/brands/github.svg";
 import linkedinLogo from "../assets/brands/linkedin.png";
+import type { Language } from "../i18n/languages.ts";
 
 /** Look of the contact bubble on the home page, which opens the contact page. */
 export const CONTACT_BUBBLE = {
@@ -49,17 +50,26 @@ export interface PhoneChannel extends ChannelBase {
   readonly availability: readonly AvailabilityRule[];
 }
 
+/** Files of the résumé in one language. */
+export interface CvFiles {
+  /** Picture of the résumé page, shown in the dialog. */
+  readonly image: string;
+  /** The same résumé as a PDF file. */
+  readonly pdf: string;
+}
+
 /** Résumé, shown as a picture in a dialog, with its PDF to download. */
 export interface CvChannel extends ChannelBase {
   readonly kind: "cv";
-  /** Picture of the résumé page, shown in the dialog. */
-  readonly image: string;
-  /** Width of the picture, in pixels. With the height, it reserves its space before loading. */
+  /**
+   * The résumé in each language of the site; the dialog shows the one of the
+   * page. A language without its résumé is a compile error.
+   */
+  readonly files: Readonly<Record<Language, CvFiles>>;
+  /** Width of the pictures, in pixels. With the height, it reserves their space before loading. */
   readonly imageWidth: number;
-  /** Height of the picture, in pixels. */
+  /** Height of the pictures, in pixels. */
   readonly imageHeight: number;
-  /** The same résumé as a PDF file. */
-  readonly pdf: string;
 }
 
 /**
@@ -97,8 +107,15 @@ export const AVAILABILITY_TIME_ZONE = "Europe/Brussels";
 const EMAIL_PARTS = ["pro.georges.mouratidis", "gmail.com"] as const;
 const PHONE_PARTS = ["+32", "490", "22", "29", "53"] as const;
 
-/** Address of the author's résumé files, served from `public/cv/`. */
-const CV_PATH = `${import.meta.env.BASE_URL}cv/cv-fr`;
+/**
+ * Files of the author's résumé in a language, served from `public/cv/`.
+ * @param language - Language of the résumé.
+ * @returns The addresses of its picture and of its PDF, e.g. `cv/cv-en.pdf`.
+ */
+function cvFiles(language: Language): CvFiles {
+  const path = `${import.meta.env.BASE_URL}cv/cv-${language}`;
+  return { image: `${path}.webp`, pdf: `${path}.pdf` };
+}
 
 /**
  * Every way to reach the author, in display order on the contact page.
@@ -156,9 +173,8 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
     kind: "cv",
     icon: { kind: "lucide", icon: FileText },
     accentColor: "#fbbf24",
-    image: `${CV_PATH}.webp`,
+    files: { fr: cvFiles("fr"), en: cvFiles("en") },
     imageWidth: 1414,
     imageHeight: 2000,
-    pdf: `${CV_PATH}.pdf`,
   },
 ];
