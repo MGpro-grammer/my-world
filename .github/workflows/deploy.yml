@@ -30,6 +30,8 @@ jobs:
       - run: npm audit
       - run: npm run format:check
       - run: npm run lint
+      # Every exported function, class, interface, type and constant must be documented.
+      - run: npm run docs:check
       - run: npm test
       # Type check, browser build and prerendering of every page (see package.json).
       - run: npm run build
