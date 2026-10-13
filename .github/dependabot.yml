@@ -1,0 +1,25 @@
+# Proposes dependency updates as pull requests; each one is checked by the
+# Deploy workflow and merged by hand. New releases wait 7 days first, so that
+# a faulty or compromised version has time to be found and withdrawn.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Kept in line with the Node.js version used to build (24 LTS).
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
