@@ -173,7 +173,7 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
     kind: "cv",
     icon: { kind: "lucide", icon: FileText },
     accentColor: "#fbbf24",
-    files: { fr: cvFiles("fr"), en: cvFiles("en") },
+    files: { fr: cvFiles("fr"), en: cvFiles("en"), nl: cvFiles("nl") },
     imageWidth: 1414,
     imageHeight: 2000,
   },

@@ -39,8 +39,8 @@ waves; each bubble floating on it opens a project page with a demo video, the ro
 project, its technologies and a link to its source code. A contact page gathers LinkedIn, GitHub,
 email, phone and the résumé.
 
-The site is available in French and English, and every page is prerendered so that it shows up
-before the JavaScript has loaded and reads well in search engines and link previews.
+The site is available in French, English and Dutch, and every page is prerendered so that it
+shows up before the JavaScript has loaded and reads well in search engines and link previews.
 
 ## Features
 
@@ -52,8 +52,9 @@ before the JavaScript has loaded and reads well in search engines and link previ
   GitHub link.
 - **Contact page** — email and phone shown on request only, availability by time slot in Belgian
   time, résumé as a picture with its PDF to download, in the language of the page.
-- **Two languages** — French and English, chosen by the address (`/fr/…`, `/en/…`); the bare
-  address sends each visitor to the language of their browser or to their last choice.
+- **Three languages** — French, English and Dutch, chosen by the address (`/fr/…`, `/en/…`,
+  `/nl/…`); the bare address sends each visitor to the language of their browser or to their last
+  choice.
 - **Search engines and sharing** — one HTML file per page and language, description, `canonical`,
   `hreflang`, Open Graph preview image and `sitemap.xml`.
 - **Accessibility** — native dialogs, visible focus, text alternatives, and Lighthouse
@@ -115,7 +116,7 @@ my-world/
     ├── components/     # Wave background, page head tags
     ├── features/       # Home, bubbles, project pages, contact, intro, languages
     ├── hooks/          # Shared React hooks (observers)
-    ├── i18n/           # Languages, addresses and texts (French, English)
+    ├── i18n/           # Languages, addresses and texts (French, English, Dutch)
     ├── data/           # Projects, contact channels, site address
     ├── prerender/      # Pages to prerender, head tags, sitemap
     ├── assets/         # LinkedIn and GitHub logos
@@ -190,7 +191,8 @@ rights reserved:
 - the demo videos and their posters (`public/videos/`);
 - the preview image and the site icons (`public/social-preview.png`, `public/favicon.svg`,
   `public/apple-touch-icon.png`);
-- the texts describing the author and his projects (`src/i18n/fr.ts`, `src/i18n/en.ts`).
+- the texts describing the author and his projects (`src/i18n/fr.ts`, `src/i18n/en.ts`,
+  `src/i18n/nl.ts`).
 
 The LinkedIn and GitHub logos (`src/assets/brands/`) belong to their respective owners.
 

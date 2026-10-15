@@ -1,13 +1,14 @@
 import { en } from "./en.ts";
 import { fr } from "./fr.ts";
+import { nl } from "./nl.ts";
 import type { Translations } from "./Translations.ts";
 
 /**
  * Languages of the site, as ISO 639-1 codes, in the order of the language
  * switch. Each one is also the first part of the addresses in that language
- * (`/fr/…`, `/en/…`).
+ * (`/fr/…`, `/en/…`, `/nl/…`).
  */
-export const LANGUAGES = ["fr", "en"] as const;
+export const LANGUAGES = ["fr", "en", "nl"] as const;
 
 /** One of the site's languages. */
 export type Language = (typeof LANGUAGES)[number];
@@ -19,7 +20,7 @@ export type Language = (typeof LANGUAGES)[number];
  * (e.g. `nl.ts`) and one entry here: a language without texts, or with a
  * missing text, is a compile error.
  */
-export const TRANSLATIONS: Readonly<Record<Language, Translations>> = { fr, en };
+export const TRANSLATIONS: Readonly<Record<Language, Translations>> = { fr, en, nl };
 
 /**
  * Name of each language, written in that language, so that every visitor
@@ -28,6 +29,7 @@ export const TRANSLATIONS: Readonly<Record<Language, Translations>> = { fr, en }
 export const LANGUAGE_NAMES: Readonly<Record<Language, string>> = {
   fr: "Français",
   en: "English",
+  nl: "Nederlands",
 };
 
 /**
@@ -37,6 +39,7 @@ export const LANGUAGE_NAMES: Readonly<Record<Language, string>> = {
 export const OPEN_GRAPH_LOCALES: Readonly<Record<Language, string>> = {
   fr: "fr_BE",
   en: "en_US",
+  nl: "nl_BE",
 };
 
 /**

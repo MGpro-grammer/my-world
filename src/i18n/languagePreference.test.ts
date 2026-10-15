@@ -14,13 +14,14 @@ describe("pickLanguage", () => {
   it.each([
     [["fr-BE", "fr", "en"], "fr"],
     [["en-US", "en"], "en"],
-    [["nl-BE", "fr-BE", "en"], "fr"],
+    [["de-DE", "fr-BE", "en"], "fr"],
+    [["nl-BE", "fr-BE"], "nl"],
     [["FR-be"], "fr"],
   ])("takes the first browser language the site has: %j", (browserLanguages, expected) => {
     expect(pickLanguage(null, browserLanguages)).toBe(expected);
   });
 
-  it.each([[["nl-BE"]], [["de-DE", "es"]], [[]]])(
+  it.each([[["it-IT"]], [["de-DE", "es"]], [[]]])(
     "falls back to English for %j",
     (browserLanguages) => {
       expect(pickLanguage(null, browserLanguages)).toBe("en");
