@@ -19,7 +19,7 @@ export const nl = {
     listView: "Lijst",
     contactSummary: "LinkedIn, GitHub, e-mail, telefoon en cv",
     description:
-      "Portfolio van Georges Mouratidis, ontwikkelaar van web- en mobiele applicaties: zeven projecten met hun demovideo, en zijn contactgegevens.",
+      "Portfolio van Georges Mouratidis, ontwikkelaar van web- en mobiele applicaties: acht projecten met hun demovideo, en zijn contactgegevens.",
   },
   projectPage: {
     back: "Terug naar de projecten",
@@ -111,6 +111,14 @@ export const nl = {
       role: "Back-end",
       videoDescription:
         "De video toont de module in de app-catalogus van Odoo, de interviewvragen gescoord per vaardigheid, en daarna de bijbehorende website waar de feedback van sollicitatiegesprekken wordt gefilterd op vaardigheid, functie, score en datum.",
+    },
+    oxono: {
+      summary: "Strategisch bordspel Oxono, tegen de computer",
+      description:
+        "Desktopversie van het strategische bordspel Oxono, in Java 21 en JavaFX, tegen de computer: elke beurt verplaatst een speler een X- of O-totem en legt er een fiche naast; wie als eerste 4 fiches van dezelfde kleur of met hetzelfde symbool op een rij heeft, wint. Instelbare bordgrootte, elke actie ongedaan maken en opnieuw uitvoeren.",
+      role: "Enige ontwikkelaar",
+      videoDescription:
+        "De video toont het instellen van een spel (niveau van de computer, grootte van het bord), en daarna beurten tegen de computer: een totem verplaatsen, een fiche leggen waarbij het vak groen kleurt als de zet toegestaan is en rood als dat niet zo is, een zet ongedaan maken, tot de roze speler wint met 4 X-fiches op een rij.",
     },
     synthesizer: {
       summary: "C++-synthesizer met twee oscillatoren",

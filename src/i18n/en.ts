@@ -19,7 +19,7 @@ export const en = {
     listView: "List",
     contactSummary: "LinkedIn, GitHub, email, phone and résumé",
     description:
-      "Portfolio of Georges Mouratidis, web and mobile application developer: seven projects with their demo video, and how to reach him.",
+      "Portfolio of Georges Mouratidis, web and mobile application developer: eight projects with their demo video, and how to reach him.",
   },
   projectPage: {
     back: "Back to projects",
@@ -111,6 +111,14 @@ export const en = {
       role: "Back end",
       videoDescription:
         "The video shows the module in Odoo's app catalog, the interview questions scored by skill, then the companion website where interview feedback is filtered by skill, position, score and date.",
+    },
+    oxono: {
+      summary: "Oxono strategy board game, against the computer",
+      description:
+        "Desktop version of the Oxono strategy board game, in Java 21 and JavaFX, against the computer: each turn, a player moves an X or O totem, then places a token next to it; the first to line up 4 tokens of the same color or the same symbol wins. Adjustable board size, undo and redo of every action.",
+      role: "Sole developer",
+      videoDescription:
+        "The video shows setting up a game (computer level, board size), then turns against the computer: moving a totem, placing a token with the cell shown in green if the move is allowed or in red if not, undoing a move, until the pink player wins by lining up 4 X tokens.",
     },
     synthesizer: {
       summary: "Two-oscillator C++ synthesizer",

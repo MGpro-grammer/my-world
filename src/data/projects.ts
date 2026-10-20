@@ -5,6 +5,7 @@ import {
   Piano,
   Salad,
   ShieldCheck,
+  TicTacToe,
   WholeWord,
   type LucideIcon,
 } from "lucide-react";
@@ -16,6 +17,7 @@ export type ProjectId =
   | "convertisor"
   | "repartitor"
   | "module-odoo-interview"
+  | "oxono"
   | "synthesizer"
   | "wordeul";
 
@@ -135,6 +137,17 @@ export const PROJECTS: readonly Project[] = [
     technologies: ["Python", "Django", "Odoo", "Docker"],
     repositoryUrl: `${GITHUB_BASE_URL}/module-odoo-interview`,
     video: videoOf("module-odoo-interview", 1280, 580),
+  },
+  {
+    id: "oxono",
+    name: "Oxono",
+    kind: "school",
+    teamSize: 1,
+    icon: TicTacToe,
+    accentColor: "#38bdf8",
+    technologies: ["Java 21", "JavaFX", "Maven", "JUnit 5"],
+    repositoryUrl: `${GITHUB_BASE_URL}/oxono`,
+    video: videoOf("oxono", 1280, 500),
   },
   {
     id: "synthesizer",
